@@ -1,0 +1,15 @@
+<resources>
+    <style name="Theme.TouchFix" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#FF6750A4</item>
+        <item name="colorOnPrimary">#FFFFFFFF</item>
+        <item name="colorPrimaryContainer">#FFEADDFF</item>
+        <item name="colorOnPrimaryContainer">#FF21005D</item>
+        <item name="colorSecondary">#FF625B71</item>
+        <item name="colorOnSecondary">#FFFFFFFF</item>
+        <item name="colorSurface">#FF1C1B1F</item>
+        <item name="colorOnSurface">#FFE6E1E5</item>
+        <item name="colorSurfaceVariant">#FF49454F</item>
+        <item name="android:statusBarColor">#FF1C1B1F</item>
+        <item name="android:navigationBarColor">#FF1C1B1F</item>
+    </style>
+</resources>

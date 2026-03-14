@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF1C1B1F"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- App Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔧 TouchFix"
+            android:textSize="32sp"
+            android:textColor="#FFE6E1E5"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pixel 10 Pro Touch-Freeze Workaround"
+            android:textSize="14sp"
+            android:textColor="#99E6E1E5"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Service Status Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SERVICE STATUS"
+                android:textSize="12sp"
+                android:textColor="#99E6E1E5"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/status_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prüfe…"
+                android:textSize="16sp"
+                android:textColor="#FFE6E1E5" />
+        </LinearLayout>
+
+        <!-- Permission Status Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BERECHTIGUNG"
+                android:textSize="12sp"
+                android:textColor="#99E6E1E5"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/status_permission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prüfe…"
+                android:textSize="14sp"
+                android:textColor="#FFE6E1E5"
+                android:fontFamily="monospace" />
+        </LinearLayout>
+
+        <!-- Log Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AKTIVITÄT"
+                android:textSize="12sp"
+                android:textColor="#99E6E1E5"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/status_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="–"
+                android:textSize="14sp"
+                android:textColor="#FFE6E1E5"
+                android:fontFamily="monospace" />
+        </LinearLayout>
+
+        <!-- Enable Button -->
+        <Button
+            android:id="@+id/btn_enable_service"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Service aktivieren"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#FF6750A4" />
+
+        <!-- Info -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Die App setzt nach jedem Aufwachen automatisch den deeptouch ML-Classifier und die Touch-Sensitivity zurück, um das Touch-Freeze-Problem zu beheben."
+            android:textSize="12sp"
+            android:textColor="#66E6E1E5"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp"
+            android:lineSpacingMultiplier="1.4" />
+
+    </LinearLayout>
+</ScrollView>

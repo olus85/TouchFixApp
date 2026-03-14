@@ -1,0 +1,191 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="de.olus.touchfix"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="33"
+9        android:targetSdkVersion="35" />
+10
+11    <!-- Needed to modify system settings like deep_press_enabled, adaptive_touch_sensitivity -->
+12    <!-- Must be granted via ADB: adb shell pm grant de.olus.touchfix android.permission.WRITE_SECURE_SETTINGS -->
+13    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+13-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:7:5-8:47
+13-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:7:22-77
+14
+15    <!-- Auto-start on boot -->
+16    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+16-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:11:5-81
+16-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:11:22-78
+17
+18    <!-- Wake lock for screen wake -->
+19    <uses-permission android:name="android.permission.WAKE_LOCK" />
+19-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:14:5-68
+19-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:14:22-65
+20
+21    <!-- Foreground service for persistent notification -->
+22    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+22-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:17:5-77
+22-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:17:22-74
+23    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+23-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:18:5-89
+23-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:18:22-86
+24    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+24-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:19:5-77
+24-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:19:22-74
+25
+26    <permission
+26-->[androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+27        android:name="de.olus.touchfix.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+27-->[androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+28        android:protectionLevel="signature" />
+28-->[androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+29
+30    <uses-permission android:name="de.olus.touchfix.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+30-->[androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+30-->[androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+31
+32    <application
+32-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:21:5-59:19
+33        android:allowBackup="true"
+33-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:22:9-35
+34        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+34-->[androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+35        android:debuggable="true"
+36        android:extractNativeLibs="false"
+37        android:icon="@mipmap/ic_launcher"
+37-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:23:9-43
+38        android:label="@string/app_name"
+38-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:24:9-41
+39        android:roundIcon="@mipmap/ic_launcher_round"
+39-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:25:9-54
+40        android:supportsRtl="true"
+40-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:26:9-35
+41        android:theme="@style/Theme.TouchFix" >
+41-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:27:9-46
+42        <activity
+42-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:29:9-37:20
+43            android:name="de.olus.touchfix.MainActivity"
+43-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:30:13-41
+44            android:exported="true"
+44-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:31:13-36
+45            android:theme="@style/Theme.TouchFix" >
+45-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:32:13-50
+46            <intent-filter>
+46-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:33:13-36:29
+47                <action android:name="android.intent.action.MAIN" />
+47-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:34:17-69
+47-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:34:25-66
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:35:17-77
+49-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:35:27-74
+50            </intent-filter>
+51        </activity>
+52
+53        <service
+53-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:39:9-49:19
+54            android:name="de.olus.touchfix.TouchFixService"
+54-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:40:13-44
+55            android:exported="false"
+55-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:41:13-37
+56            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+56-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:42:13-79
+57            <intent-filter>
+57-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:43:13-45:29
+58                <action android:name="android.accessibilityservice.AccessibilityService" />
+58-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:44:17-92
+58-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:44:25-89
+59            </intent-filter>
+60
+61            <meta-data
+61-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:46:13-48:72
+62                android:name="android.accessibilityservice"
+62-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:47:17-60
+63                android:resource="@xml/accessibility_service_config" />
+63-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:48:17-69
+64        </service>
+65
+66        <receiver
+66-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:51:9-57:20
+67            android:name="de.olus.touchfix.BootReceiver"
+67-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:52:13-41
+68            android:exported="true" >
+68-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:53:13-36
+69            <intent-filter>
+69-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:54:13-56:29
+70                <action android:name="android.intent.action.BOOT_COMPLETED" />
+70-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:55:17-79
+70-->/home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:55:25-76
+71            </intent-filter>
+72        </receiver>
+73
+74        <provider
+74-->[androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+75            android:name="androidx.startup.InitializationProvider"
+75-->[androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+76            android:authorities="de.olus.touchfix.androidx-startup"
+76-->[androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+77            android:exported="false" >
+77-->[androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+78            <meta-data
+78-->[androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+79                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+79-->[androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+80                android:value="androidx.startup" />
+80-->[androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+81            <meta-data
+81-->[androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
+82                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+82-->[androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
+83                android:value="androidx.startup" />
+83-->[androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
+84            <meta-data
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+85                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+86                android:value="androidx.startup" />
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+87        </provider>
+88
+89        <receiver
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+90            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+91            android:directBootAware="false"
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+92            android:enabled="true"
+92-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+93            android:exported="true"
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+94            android:permission="android.permission.DUMP" >
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+95            <intent-filter>
+95-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+96                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+96-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+96-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+97            </intent-filter>
+98            <intent-filter>
+98-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+99                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+100            </intent-filter>
+101            <intent-filter>
+101-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+102                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+102-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+102-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+103            </intent-filter>
+104            <intent-filter>
+104-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+105                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+105-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+105-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+106            </intent-filter>
+107        </receiver>
+108    </application>
+109
+110</manifest>

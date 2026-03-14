@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-debug-31:/layout_activity_main.xml.flat",
+        "source": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-main-33:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-debug-31:/drawable_card_background.xml.flat",
+        "source": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-main-33:/drawable/card_background.xml"
+    },
+    {
+        "merged": "de.olus.touchfix.app-debug-31:/xml_accessibility_service_config.xml.flat",
+        "source": "de.olus.touchfix.app-main-33:/xml/accessibility_service_config.xml"
+    },
+    {
+        "merged": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-debug-31:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-main-33:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-debug-31:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-main-33:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-debug-31:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-main-33:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-debug-31:/xml_accessibility_service_config.xml.flat",
+        "source": "/home/olus/.gradle/daemon/8.9/de.olus.touchfix.app-main-33:/xml/accessibility_service_config.xml"
+    }
+]

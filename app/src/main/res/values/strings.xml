@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TouchFix</string>
+    <string name="accessibility_service_description">TouchFix behebt automatisch das Touch-Freeze-Problem nach dem Aufwachen des Pixel 10 Pro. Der Service erkennt Screen-On Events und setzt den Touch-Classifier zurück, wenn nötig.</string>
+    <string name="service_not_enabled">TouchFix Service ist NICHT aktiv</string>
+    <string name="service_enabled">TouchFix Service ist AKTIV ✓</string>
+    <string name="enable_service">Service aktivieren</string>
+    <string name="permission_not_granted">WRITE_SECURE_SETTINGS nicht gewährt</string>
+    <string name="permission_granted">WRITE_SECURE_SETTINGS gewährt ✓</string>
+    <string name="grant_permission_hint">Via ADB gewähren:\nadb shell pm grant de.olus.touchfix android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="status_idle">Bereit – warte auf Screen-On Event</string>
+    <string name="status_fixing">Fixing Touch…</string>
+    <string name="status_fixed">Touch Reset durchgeführt ✓</string>
+    <string name="notification_channel_name">TouchFix Status</string>
+    <string name="notification_title">TouchFix aktiv</string>
+    <string name="notification_text">Überwacht Touch-Status nach Screen-On</string>
+</resources>
