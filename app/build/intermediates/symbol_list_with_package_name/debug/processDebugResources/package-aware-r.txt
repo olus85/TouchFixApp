@@ -3380,6 +3380,10 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id switch_proactive_ping
+id switch_screen_toggle
+id switch_ultra_kick
+id switch_wake_lock
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans

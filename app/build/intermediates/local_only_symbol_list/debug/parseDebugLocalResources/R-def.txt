@@ -7,6 +7,10 @@ id btn_enable_service
 id status_log
 id status_permission
 id status_service
+id switch_proactive_ping
+id switch_screen_toggle
+id switch_ultra_kick
+id switch_wake_lock
 layout activity_main
 mipmap ic_launcher
 mipmap ic_launcher_round
