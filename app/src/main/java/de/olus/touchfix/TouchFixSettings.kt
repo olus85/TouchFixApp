@@ -7,11 +7,12 @@ class TouchFixSettings(context: Context) {
     
     companion object {
         private const val PREFS_NAME = "touchfix_prefs"
-        private const val KEY_PROACTIVE_PING = "proactive_ping"
-        private const val KEY_WAKE_LOCK = "wake_lock"
-        private const val KEY_ULTRA_KICK = "ultra_kick"
-        private const val KEY_SCREEN_TOGGLE = "screen_toggle"
-        private const val KEY_PING_INTERVAL = "ping_interval"
+        // v13: 5 new targeted fixes
+        private const val KEY_POST_FINGERPRINT_RESET = "post_fingerprint_reset"
+        private const val KEY_TOUCH_HAL_RESTART = "touch_hal_restart"
+        private const val KEY_PHANTOM_SWIPE = "phantom_swipe"
+        private const val KEY_SYSFS_RESET = "sysfs_reset"
+        private const val KEY_ESCALATING_AUTOFIX = "escalating_autofix"
         
         @Volatile
         private var instance: TouchFixSettings? = null
@@ -24,24 +25,24 @@ class TouchFixSettings(context: Context) {
     }
     
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-    
-    var proactivePingEnabled: Boolean
-        get() = prefs.getBoolean(KEY_PROACTIVE_PING, false)
-        set(value) = prefs.edit().putBoolean(KEY_PROACTIVE_PING, value).apply()
-    
-    var wakeLockEnabled: Boolean
-        get() = prefs.getBoolean(KEY_WAKE_LOCK, false)
-        set(value) = prefs.edit().putBoolean(KEY_WAKE_LOCK, value).apply()
-    
-    var ultraKickEnabled: Boolean
-        get() = prefs.getBoolean(KEY_ULTRA_KICK, true)
-        set(value) = prefs.edit().putBoolean(KEY_ULTRA_KICK, value).apply()
-    
-    var screenToggleEnabled: Boolean
-        get() = prefs.getBoolean(KEY_SCREEN_TOGGLE, false)
-        set(value) = prefs.edit().putBoolean(KEY_SCREEN_TOGGLE, value).apply()
-    
-    var pingIntervalSeconds: Int
-        get() = prefs.getInt(KEY_PING_INTERVAL, 5)
-        set(value) = prefs.edit().putInt(KEY_PING_INTERVAL, value).apply()
+
+    var postFingerprintResetEnabled: Boolean
+        get() = prefs.getBoolean(KEY_POST_FINGERPRINT_RESET, true)
+        set(value) = prefs.edit().putBoolean(KEY_POST_FINGERPRINT_RESET, value).apply()
+
+    var touchHalRestartEnabled: Boolean
+        get() = prefs.getBoolean(KEY_TOUCH_HAL_RESTART, false)
+        set(value) = prefs.edit().putBoolean(KEY_TOUCH_HAL_RESTART, value).apply()
+
+    var phantomSwipeEnabled: Boolean
+        get() = prefs.getBoolean(KEY_PHANTOM_SWIPE, false)
+        set(value) = prefs.edit().putBoolean(KEY_PHANTOM_SWIPE, value).apply()
+
+    var sysfsResetEnabled: Boolean
+        get() = prefs.getBoolean(KEY_SYSFS_RESET, false)
+        set(value) = prefs.edit().putBoolean(KEY_SYSFS_RESET, value).apply()
+
+    var escalatingAutofixEnabled: Boolean
+        get() = prefs.getBoolean(KEY_ESCALATING_AUTOFIX, true)
+        set(value) = prefs.edit().putBoolean(KEY_ESCALATING_AUTOFIX, value).apply()
 }

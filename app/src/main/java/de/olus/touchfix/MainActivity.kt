@@ -2,11 +2,13 @@ package de.olus.touchfix
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.widget.Button
-import android.widget.TextView
+import android.widget.ScrollView
 import android.widget.Switch
-import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -15,45 +17,79 @@ class MainActivity : AppCompatActivity() {
     private lateinit var statusPermission: TextView
     private lateinit var statusLog: TextView
     private lateinit var btnEnable: Button
-    private lateinit var switchProactivePing: Switch
-    private lateinit var switchWakeLock: Switch
-    private lateinit var switchUltraKick: Switch
-    private lateinit var switchScreenToggle: Switch
+    private lateinit var btnClearLog: Button
+    private lateinit var consoleText: TextView
+    private lateinit var consoleScroll: ScrollView
+
+    private lateinit var switchPostFingerprint: Switch
+    private lateinit var switchHalRestart: Switch
+    private lateinit var switchPhantomSwipe: Switch
+    private lateinit var switchSysfsReset: Switch
+    private lateinit var switchEscalating: Switch
+
     private lateinit var settings: TouchFixSettings
+    private val handler = Handler(Looper.getMainLooper())
+    private var refreshRunnable: Runnable? = null
+    private var logListener: (() -> Unit)? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
         settings = TouchFixSettings.getInstance(this)
 
+        // Bind views
         statusService = findViewById(R.id.status_service)
         statusPermission = findViewById(R.id.status_permission)
         statusLog = findViewById(R.id.status_log)
         btnEnable = findViewById(R.id.btn_enable_service)
-        
-        switchProactivePing = findViewById(R.id.switch_proactive_ping)
-        switchWakeLock = findViewById(R.id.switch_wake_lock)
-        switchUltraKick = findViewById(R.id.switch_ultra_kick)
-        switchScreenToggle = findViewById(R.id.switch_screen_toggle)
+        btnClearLog = findViewById(R.id.btn_clear_log)
+        consoleText = findViewById(R.id.console_text)
+        consoleScroll = findViewById(R.id.console_scroll)
 
+        switchPostFingerprint = findViewById(R.id.switch_post_fingerprint)
+        switchHalRestart = findViewById(R.id.switch_hal_restart)
+        switchPhantomSwipe = findViewById(R.id.switch_phantom_swipe)
+        switchSysfsReset = findViewById(R.id.switch_sysfs_reset)
+        switchEscalating = findViewById(R.id.switch_escalating)
+
+        // Button handlers
         btnEnable.setOnClickListener {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         }
 
-        // Set up switches
-        switchProactivePing.setOnCheckedChangeListener { _, isChecked ->
-            settings.proactivePingEnabled = isChecked
+        btnClearLog.setOnClickListener {
+            EventLog.clear()
+            EventLog.i("Konsole gelöscht")
         }
-        switchWakeLock.setOnCheckedChangeListener { _, isChecked ->
-            settings.wakeLockEnabled = isChecked
+
+        // Switch listeners
+        switchPostFingerprint.setOnCheckedChangeListener { _, isChecked ->
+            settings.postFingerprintResetEnabled = isChecked
+            EventLog.i("Setting: Post-Fingerprint Reset → ${if (isChecked) "AN" else "AUS"}")
         }
-        switchUltraKick.setOnCheckedChangeListener { _, isChecked ->
-            settings.ultraKickEnabled = isChecked
+        switchHalRestart.setOnCheckedChangeListener { _, isChecked ->
+            settings.touchHalRestartEnabled = isChecked
+            EventLog.i("Setting: Touch HAL Restart → ${if (isChecked) "AN" else "AUS"}")
         }
-        switchScreenToggle.setOnCheckedChangeListener { _, isChecked ->
-            settings.screenToggleEnabled = isChecked
+        switchPhantomSwipe.setOnCheckedChangeListener { _, isChecked ->
+            settings.phantomSwipeEnabled = isChecked
+            EventLog.i("Setting: Phantom Swipe → ${if (isChecked) "AN" else "AUS"}")
         }
+        switchSysfsReset.setOnCheckedChangeListener { _, isChecked ->
+            settings.sysfsResetEnabled = isChecked
+            EventLog.i("Setting: sysfs Reset → ${if (isChecked) "AN" else "AUS"}")
+        }
+        switchEscalating.setOnCheckedChangeListener { _, isChecked ->
+            settings.escalatingAutofixEnabled = isChecked
+            EventLog.i("Setting: Escalating Auto-Fix → ${if (isChecked) "AN" else "AUS"}")
+        }
+
+        // Log listener for live console
+        logListener = {
+            handler.post { refreshConsole() }
+        }
+        EventLog.addListener(logListener!!)
 
         updateUI()
     }
@@ -61,17 +97,36 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         updateUI()
+        refreshRunnable = object : Runnable {
+            override fun run() {
+                updateStats()
+                handler.postDelayed(this, 1000)
+            }
+        }
+        handler.post(refreshRunnable!!)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        refreshRunnable?.let { handler.removeCallbacks(it) }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        logListener?.let { EventLog.removeListener(it) }
     }
 
     private fun updateUI() {
-        // Load settings
-        switchProactivePing.isChecked = settings.proactivePingEnabled
-        switchWakeLock.isChecked = settings.wakeLockEnabled
-        switchUltraKick.isChecked = settings.ultraKickEnabled
-        switchScreenToggle.isChecked = settings.screenToggleEnabled
+        // Load switch states
+        switchPostFingerprint.isChecked = settings.postFingerprintResetEnabled
+        switchHalRestart.isChecked = settings.touchHalRestartEnabled
+        switchPhantomSwipe.isChecked = settings.phantomSwipeEnabled
+        switchSysfsReset.isChecked = settings.sysfsResetEnabled
+        switchEscalating.isChecked = settings.escalatingAutofixEnabled
 
+        // Service status
         if (TouchFixService.isRunning) {
-            statusService.text = "✅ TouchFix v11 ACTIVE"
+            statusService.text = "✅ TouchFix v13 ACTIVE"
             statusService.setTextColor(0xFF4CAF50.toInt())
             btnEnable.text = "Service-Einstellungen öffnen"
         } else {
@@ -80,6 +135,7 @@ class MainActivity : AppCompatActivity() {
             btnEnable.text = "Service jetzt aktivieren"
         }
 
+        // Permission status
         val hasPermission = try {
             Settings.Secure.putInt(contentResolver, "touchfix_permission_test", 0)
             true
@@ -95,17 +151,34 @@ class MainActivity : AppCompatActivity() {
             statusPermission.setTextColor(0xFFF44336.toInt())
         }
 
+        updateStats()
+        refreshConsole()
+    }
+
+    private fun updateStats() {
         if (TouchFixService.isRunning) {
-            val sb = StringBuilder()
-            sb.appendLine("Status: ${if (settings.ultraKickEnabled) "Ultra Mode" else "Aktiv"}")
-            sb.appendLine("")
-            sb.appendLine("Kicks: ${TouchFixService.fixCount} | Fails: ${TouchFixService.failCount}")
-            if (settings.proactivePingEnabled) {
-                sb.appendLine("Pings: ${TouchFixService.pingCount}")
-            }
-            statusLog.text = sb.toString()
+            val active = listOf(
+                settings.postFingerprintResetEnabled,
+                settings.touchHalRestartEnabled,
+                settings.phantomSwipeEnabled,
+                settings.sysfsResetEnabled,
+                settings.escalatingAutofixEnabled,
+            ).count { it }
+            statusLog.text = "Kicks: ${TouchFixService.fixCount} | Fails: ${TouchFixService.failCount} | Aktiv: $active/5"
         } else {
-            statusLog.text = "Service nicht aktiv - bitte zuerst aktivieren."
+            statusLog.text = "Service nicht aktiv"
+        }
+    }
+
+    private fun refreshConsole() {
+        val entries = EventLog.getSnapshot()
+        if (entries.isEmpty()) {
+            consoleText.text = "Warte auf Events…"
+            return
+        }
+        consoleText.text = entries.joinToString("\n") { it.formatted }
+        consoleScroll.post {
+            consoleScroll.fullScroll(ScrollView.FOCUS_DOWN)
         }
     }
 }

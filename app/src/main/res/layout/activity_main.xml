@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pixel 10 Pro Touch-Freeze Workaround"
+            android:text="v13 · Pixel 10 Pro · Fingerprint-Fix Edition"
             android:textSize="14sp"
             android:textColor="#99E6E1E5"
             android:layout_marginTop="8dp"
@@ -86,7 +86,7 @@
                 android:fontFamily="monospace" />
         </LinearLayout>
 
-        <!-- Options Card -->
+        <!-- Fix Switches Card -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,93 +98,205 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OPTIONEN"
+                android:text="🎯 FIX-OPTIONEN"
                 android:textSize="12sp"
-                android:textColor="#99E6E1E5"
+                android:textColor="#FF80CBC4"
                 android:letterSpacing="0.1"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="14dp" />
 
-            <!-- Proactive Ping -->
+            <!-- 1. Post-Fingerprint Reset -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="4dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Proaktiver Ping (5s)"
+                    android:text="🔐 Post-Fingerprint Reset"
                     android:textSize="14sp"
-                    android:textColor="#FFE6E1E5" />
+                    android:textColor="#FFFFAB40" />
                 <Switch
-                    android:id="@+id/switch_proactive_ping"
+                    android:id="@+id/switch_post_fingerprint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gezielter 4-Stufen-Reset nach Fingerprint-Unlock (50/300/600/1000ms). Erkennt ob Touch nach dem Entsperren funktioniert und reagiert."
+                android:textSize="11sp"
+                android:textColor="#99FFAB40"
+                android:layout_marginBottom="16dp" />
 
-            <!-- Wake Lock -->
+            <!-- 2. Touch HAL Restart -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="4dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Wake Lock (Akku!)"
+                    android:text="⚙️ Touch HAL Restart"
                     android:textSize="14sp"
                     android:textColor="#FFE6E1E5" />
                 <Switch
-                    android:id="@+id/switch_wake_lock"
+                    android:id="@+id/switch_hal_restart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Versucht den Touch-HAL-Service (Vendor-Treiber) neu zu starten. Aggressivster Ansatz."
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5"
+                android:layout_marginBottom="16dp" />
 
-            <!-- Ultra Kick -->
+            <!-- 3. Phantom Swipe -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="4dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Ultra Kick"
+                    android:text="👻 Phantom Swipe Flood"
                     android:textSize="14sp"
                     android:textColor="#FFE6E1E5" />
                 <Switch
-                    android:id="@+id/switch_ultra_kick"
+                    android:id="@+id/switch_phantom_swipe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Injiziert bei Screen-On sofort 6 Swipes/Taps statt punktueller Events. Durchläuft die gesamte Touch-Pipeline."
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5"
+                android:layout_marginBottom="16dp" />
 
-            <!-- Screen Toggle -->
+            <!-- 4. sysfs Touch Reset -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Screen Toggle (Notfall)"
+                    android:text="🔩 sysfs Touch Reset"
                     android:textSize="14sp"
                     android:textColor="#FFE6E1E5" />
                 <Switch
-                    android:id="@+id/switch_screen_toggle"
+                    android:id="@+id/switch_sysfs_reset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Schreibt direkt auf Hardware-Reset-Nodes des Touch-Controllers (Goodix/Pixel). Braucht ggf. Root."
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 5. Escalating Auto-Fix -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="📈 Escalating Auto-Fix"
+                    android:textSize="14sp"
+                    android:textColor="#FFFFAB40" />
+                <Switch
+                    android:id="@+id/switch_escalating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Intelligenter Watchdog: Wenn Touch nach Screen-On nicht reagiert, eskaliert automatisch durch 4 Stufen (Settings → Swipes → HAL → sysfs → Screen-Cycle)."
+                android:textSize="11sp"
+                android:textColor="#99FFAB40" />
         </LinearLayout>
 
-        <!-- Log Card -->
+        <!-- CONSOLE Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="📟 KONSOLE"
+                    android:textSize="12sp"
+                    android:textColor="#FF80CBC4"
+                    android:letterSpacing="0.1" />
+
+                <Button
+                    android:id="@+id/btn_clear_log"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Löschen"
+                    android:textSize="11sp"
+                    android:backgroundTint="#33E6E1E5"
+                    android:textColor="#99E6E1E5"
+                    android:minWidth="0dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp" />
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/console_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="#FF121212"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/console_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Warte auf Events…"
+                    android:textSize="11sp"
+                    android:textColor="#CCCCCCCC"
+                    android:fontFamily="monospace"
+                    android:lineSpacingMultiplier="1.3" />
+            </ScrollView>
+        </LinearLayout>
+
+        <!-- Stats Card -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -196,7 +308,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AKTIVITÄT"
+                android:text="STATISTIKEN"
                 android:textSize="12sp"
                 android:textColor="#99E6E1E5"
                 android:letterSpacing="0.1"
@@ -226,7 +338,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Die App setzt nach jedem Aufwachen automatisch den deeptouch ML-Classifier und die Touch-Sensitivity zurück, um das Touch-Freeze-Problem zu beheben."
+            android:text="v13 fokussiert auf das Fingerprint-Unlock-Problem. Post-Fingerprint Reset erkennt den genauen Zeitpunkt des Entsperrens und reagiert gezielt."
             android:textSize="12sp"
             android:textColor="#66E6E1E5"
             android:layout_marginTop="24dp"

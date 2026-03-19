@@ -11,25 +11,19 @@ import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
 import android.provider.Settings
-import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import androidx.core.app.NotificationCompat
+import java.io.BufferedReader
+import java.io.File
+import java.io.InputStreamReader
 
 class TouchFixService : AccessibilityService() {
 
     companion object {
-        private const val TAG = "TouchFix"
         private const val CHANNEL_ID = "touchfix_status"
         private const val NOTIFICATION_ID = 1001
-        private const val DEEP_PRESS_SETTING = "deep_press_enabled"
-        private const val DENSITY_SETTING = "display_density_forced"
         private const val SENSITIVITY_SETTING = "touch_sensitivity_enabled"
-        private const val SIZE_SETTING = "display_size_forced"
         private const val POINTER_LOCATION_SETTING = "pointer_location"
-        private const val TOUCH_STATS_SETTING = "touch_statistics"
-        private const val STYLUS_FINGER_SETTING = "stylus_finger_as_finger"
-        private const val RETRY_COUNT = 3
-        private const val WATCHDOG_DELAY_MS = 1500L
 
         var isRunning = false
             private set
@@ -37,70 +31,44 @@ class TouchFixService : AccessibilityService() {
             private set
         var failCount = 0
             private set
-        var pingCount = 0
-            private set
     }
 
     private lateinit var settings: TouchFixSettings
     private val handler = Handler(Looper.getMainLooper())
     private var screenReceiver: BroadcastReceiver? = null
-    private var originalDensity: Int = 0
-    private var touchDetectedThisCycle = false
-    private var lastFixTime = 0L
-    private var retryAttempt = 0
+    private var touchDetectedSinceScreenOn = false
+    private var touchDetectedSinceUnlock = false
+    private var screenOnTimestamp = 0L
+    private var unlockTimestamp = 0L
+    private var escalationLevel = 0
     private var wakeLock: PowerManager.WakeLock? = null
-    private var isScreenOn = false
-    private var pingRunnable: Runnable? = null
+
+    // ──────────────────── Lifecycle ────────────────────
 
     override fun onServiceConnected() {
         super.onServiceConnected()
         isRunning = true
         settings = TouchFixSettings.getInstance(this)
-        originalDensity = resources.displayMetrics.densityDpi
-        Log.i(TAG, "TouchFixService v11 connected")
+
+        EventLog.i("════════════════════════════════")
+        EventLog.ok("TouchFixService v13 gestartet")
+        EventLog.i("Gerät: ${android.os.Build.MODEL} / API ${android.os.Build.VERSION.SDK_INT}")
+        logActiveSettings()
+
         createNotificationChannel()
-        updateMainNotification()
-        ensureDeepPressDisabled()
+        updateNotification("Bereit")
         registerScreenReceiver()
-        if (settings.proactivePingEnabled || settings.wakeLockEnabled) {
-            startProactiveMode()
-        }
-        updateStatus("Bereit")
+        EventLog.ok("Service bereit – warte auf Screen-Events")
     }
 
-    private fun startProactiveMode() {
-        if (settings.wakeLockEnabled) {
-            val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
-            wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TouchFix:Proactive")
-            try {
-                wakeLock?.acquire(10 * 60 * 1000L)
-                Log.i(TAG, "WakeLock ON")
-            } catch (e: Exception) {
-                Log.e(TAG, "WakeLock failed", e)
-            }
-        }
-        if (settings.proactivePingEnabled) {
-            val intervalMs = settings.pingIntervalSeconds * 1000L
-            pingRunnable = object : Runnable {
-                override fun run() {
-                    if (isScreenOn) {
-                        sendPing()
-                    }
-                    handler.postDelayed(this, intervalMs)
-                }
-            }
-            handler.post(pingRunnable!!)
-            Log.i(TAG, "Ping every ${settings.pingIntervalSeconds}s")
-        }
-    }
-
-    private fun sendPing() {
-        pingCount++
-        try {
-            Runtime.getRuntime().exec("input tap 1 1")
-        } catch (e: Exception) {
-            Log.e(TAG, "Ping failed", e)
-        }
+    private fun logActiveSettings() {
+        val active = mutableListOf<String>()
+        if (settings.postFingerprintResetEnabled) active.add("PostFingerprint")
+        if (settings.touchHalRestartEnabled) active.add("HAL-Restart")
+        if (settings.phantomSwipeEnabled) active.add("PhantomSwipe")
+        if (settings.sysfsResetEnabled) active.add("SysFS")
+        if (settings.escalatingAutofixEnabled) active.add("EscalAutofix")
+        EventLog.i("Aktiv: ${if (active.isEmpty()) "keine" else active.joinToString(", ")}")
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
@@ -108,53 +76,45 @@ class TouchFixService : AccessibilityService() {
         when (event.eventType) {
             AccessibilityEvent.TYPE_VIEW_CLICKED,
             AccessibilityEvent.TYPE_TOUCH_INTERACTION_START -> {
-                if (!touchDetectedThisCycle && !isKeyguardLocked()) {
-                    touchDetectedThisCycle = true
-                    handler.removeCallbacksAndMessages("INPUT_KICK")
+                if (!touchDetectedSinceScreenOn) {
+                    touchDetectedSinceScreenOn = true
+                    val delay = System.currentTimeMillis() - screenOnTimestamp
+                    EventLog.ok("✓ Touch erkannt! (${delay}ms nach Screen-On)")
+                    handler.removeCallbacksAndMessages("ESCALATE")
                     handler.removeCallbacksAndMessages("WATCHDOG")
-                    cleanupAllFlips()
+                }
+                if (!touchDetectedSinceUnlock && unlockTimestamp > 0) {
+                    touchDetectedSinceUnlock = true
+                    val delay = System.currentTimeMillis() - unlockTimestamp
+                    EventLog.ok("✓ Touch nach Unlock! (${delay}ms nach Unlock)")
+                    handler.removeCallbacksAndMessages("POST_FP")
                 }
             }
         }
     }
 
-    private fun isKeyguardLocked(): Boolean {
-        val km = getSystemService(Context.KEYGUARD_SERVICE) as android.app.KeyguardManager
-        return km.isKeyguardLocked
-    }
-
     override fun onInterrupt() {}
 
     override fun onDestroy() {
+        EventLog.w("Service wird beendet!")
         isRunning = false
         handler.removeCallbacksAndMessages(null)
-        pingRunnable?.let { handler.removeCallbacks(it) }
-        try {
-            wakeLock?.release()
-        } catch (_: Exception) {
-        }
-        cleanupAllFlips()
+        releaseWakeLock()
         screenReceiver?.let {
-            try {
-                unregisterReceiver(it)
-            } catch (_: Exception) {
-            }
+            try { unregisterReceiver(it) } catch (_: Exception) {}
         }
+        EventLog.e("Service beendet")
         super.onDestroy()
     }
+
+    // ──────────────────── Screen Receiver ────────────────────
 
     private fun registerScreenReceiver() {
         screenReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 when (intent?.action) {
-                    Intent.ACTION_SCREEN_ON -> {
-                        isScreenOn = true
-                        onScreenOn()
-                    }
-                    Intent.ACTION_SCREEN_OFF -> {
-                        isScreenOn = false
-                        onScreenOff()
-                    }
+                    Intent.ACTION_SCREEN_ON -> onScreenOn()
+                    Intent.ACTION_SCREEN_OFF -> onScreenOff()
                     Intent.ACTION_USER_PRESENT -> onUserPresent()
                 }
             }
@@ -165,69 +125,442 @@ class TouchFixService : AccessibilityService() {
             addAction(Intent.ACTION_USER_PRESENT)
         }
         registerReceiver(screenReceiver, filter)
+        EventLog.i("Screen-Receiver registriert")
     }
+
+    // ──────────────────── Screen ON ────────────────────
 
     private fun onScreenOn() {
-        Log.i(TAG, "SCREEN ON")
-        touchDetectedThisCycle = false
-        retryAttempt = 0
+        screenOnTimestamp = System.currentTimeMillis()
+        touchDetectedSinceScreenOn = false
+        touchDetectedSinceUnlock = false
+        escalationLevel = 0
+        EventLog.i("━━━ SCREEN ON ━━━")
 
-        // Extra pings on screen on
-        if (settings.proactivePingEnabled) {
-            sendPing()
-            sendPing()
-            sendPing()
+        // Acquire temporary wake lock for fix execution
+        acquireWakeLock(15_000L)
+
+        // Phantom Swipe: immediate swipe flood
+        if (settings.phantomSwipeEnabled) {
+            EventLog.i("[PhantomSwipe] Sofort-Swipes werden injiziert...")
+            executePhantomSwipes()
         }
 
-        // Ultra kick if enabled
-        if (settings.ultraKickEnabled) {
-            startUltraReset()
-
+        // sysfs Reset: poke touch controller hardware
+        if (settings.sysfsResetEnabled) {
             handler.postDelayed({
-                if (!touchDetectedThisCycle && retryAttempt < RETRY_COUNT) {
-                    retryAttempt++
-                    startUltraReset()
-                } else if (!touchDetectedThisCycle && retryAttempt >= RETRY_COUNT && settings.screenToggleEnabled) {
-                    triggerScreenToggle()
-                } else if (!touchDetectedThisCycle && retryAttempt >= RETRY_COUNT) {
-                    showBugNotification()
-                }
-            }, "WATCHDOG", WATCHDOG_DELAY_MS)
+                EventLog.i("[SysFS] Touch-Controller Reset...")
+                executeSysfsReset()
+            }, 100)
+        }
+
+        // Escalating Auto-Fix: start watchdog chain
+        if (settings.escalatingAutofixEnabled) {
+            EventLog.i("[AutoFix] Watchdog gestartet – warte auf Touch...")
+            scheduleEscalation(2000)
         }
     }
+
+    // ──────────────────── Screen OFF ────────────────────
 
     private fun onScreenOff() {
+        EventLog.i("━━━ SCREEN OFF ━━━")
         handler.removeCallbacksAndMessages(null)
-        touchDetectedThisCycle = false
-        cleanupAllFlips()
+        touchDetectedSinceScreenOn = false
+        touchDetectedSinceUnlock = false
+        unlockTimestamp = 0
+        releaseWakeLock()
     }
+
+    // ──────────────────── User Unlock (Fingerprint) ────────────────────
 
     private fun onUserPresent() {
-        Log.i(TAG, "USER UNLOCKED")
-        if (settings.ultraKickEnabled) {
-            startUltraReset()
+        unlockTimestamp = System.currentTimeMillis()
+        touchDetectedSinceUnlock = false
+        val timeSinceScreenOn = unlockTimestamp - screenOnTimestamp
+        EventLog.i("━━━ UNLOCK (${timeSinceScreenOn}ms nach Screen-On) ━━━")
+
+        // Post-Fingerprint Reset: the main targeted fix
+        if (settings.postFingerprintResetEnabled) {
+            EventLog.i("[PostFP] Fingerprint-Unlock erkannt → Starte gezielte Resets...")
+
+            // Stage 1: Immediate (50ms) – fast sensitivity toggle
+            handler.postDelayed({
+                if (!touchDetectedSinceUnlock) {
+                    EventLog.i("[PostFP] Stage 1/4: Sensitivity Toggle (50ms)")
+                    try {
+                        Settings.Secure.putInt(contentResolver, SENSITIVITY_SETTING, 1)
+                        handler.postDelayed({
+                            Settings.Secure.putInt(contentResolver, SENSITIVITY_SETTING, 0)
+                        }, 30)
+                    } catch (e: Exception) {
+                        EventLog.e("[PostFP] Stage 1 Fehler: ${e.message}")
+                    }
+                }
+            }, "POST_FP", 50)
+
+            // Stage 2: 300ms – swipe injection
+            handler.postDelayed({
+                if (!touchDetectedSinceUnlock) {
+                    EventLog.i("[PostFP] Stage 2/4: Swipe-Injection (300ms)")
+                    injectSwipes(3)
+                }
+            }, "POST_FP", 300)
+
+            // Stage 3: 600ms – pointer location rebuild
+            handler.postDelayed({
+                if (!touchDetectedSinceUnlock) {
+                    EventLog.i("[PostFP] Stage 3/4: InputDispatcher Rebuild (600ms)")
+                    try {
+                        Settings.System.putInt(contentResolver, POINTER_LOCATION_SETTING, 1)
+                        handler.postDelayed({
+                            Settings.System.putInt(contentResolver, POINTER_LOCATION_SETTING, 0)
+                        }, 50)
+                    } catch (e: Exception) {
+                        EventLog.e("[PostFP] Stage 3 Fehler: ${e.message}")
+                    }
+                }
+            }, "POST_FP", 600)
+
+            // Stage 4: 1000ms – HAL poke if enabled
+            handler.postDelayed({
+                if (!touchDetectedSinceUnlock) {
+                    EventLog.w("[PostFP] Stage 4/4: Kein Touch nach 1s! HAL-Poke...")
+                    pokeHal()
+                    fixCount++
+                    updateNotification("PostFP Kick #$fixCount")
+                } else {
+                    EventLog.ok("[PostFP] Touch funktioniert – kein weiterer Reset nötig ✓")
+                }
+            }, "POST_FP", 1000)
+        }
+
+        // Touch HAL Restart on unlock
+        if (settings.touchHalRestartEnabled) {
+            handler.postDelayed({
+                if (!touchDetectedSinceUnlock) {
+                    EventLog.w("[HAL-Restart] Kein Touch nach Unlock → HAL wird neu gestartet...")
+                    executeTouchHalRestart()
+                }
+            }, 800)
         }
     }
 
-    private fun triggerScreenToggle() {
-        if (isKeyguardLocked()) {
-            showBugNotification()
-            return
-        }
+    // ══════════════════════════════════════════════════════
+    //  FIX 1: Post-Fingerprint Reset (stages in onUserPresent)
+    // ══════════════════════════════════════════════════════
+
+    private fun pokeHal() {
         try {
-            Runtime.getRuntime().exec("input keyevent 26")
-            handler.postDelayed({
-                Runtime.getRuntime().exec("input keyevent 26")
-            }, 400)
+            // Poke the touch controller through multiple system paths
+            val cmds = listOf(
+                "input tap 1 1",
+                "input tap 540 1200",
+                "input swipe 100 500 400 500 50",
+            )
+            for (cmd in cmds) {
+                Runtime.getRuntime().exec(cmd)
+            }
+            EventLog.i("[PostFP] HAL-Poke: 2 taps + 1 swipe gesendet")
         } catch (e: Exception) {
-            Log.e(TAG, "Toggle failed", e)
-            showBugNotification()
+            EventLog.e("[PostFP] HAL-Poke Fehler: ${e.message}")
         }
+    }
+
+    // ══════════════════════════════════════════════════════
+    //  FIX 2: Touch HAL Restart
+    // ══════════════════════════════════════════════════════
+
+    private fun executeTouchHalRestart() {
+        try {
+            // Try various known Touch HAL service names on Pixel devices
+            val halNames = listOf(
+                "vendor.google.touch_offload@1.0-service",
+                "vendor.google.touch_offload@2.0-service",
+                "vendor.touch.touchscreen@1.0-service",
+                "vendor.goodix.fingerprint@2.1-service",
+            )
+            EventLog.i("[HAL-Restart] Versuche Touch-HAL Services zu finden...")
+
+            // First check which services exist
+            val process = Runtime.getRuntime().exec("getprop")
+            val reader = BufferedReader(InputStreamReader(process.inputStream))
+            val touchProps = mutableListOf<String>()
+            var line: String?
+            while (reader.readLine().also { line = it } != null) {
+                val l = line ?: continue
+                if (l.contains("touch", ignoreCase = true) || l.contains("input", ignoreCase = true)) {
+                    touchProps.add(l)
+                }
+            }
+            reader.close()
+            if (touchProps.isNotEmpty()) {
+                EventLog.i("[HAL-Restart] Touch-Properties gefunden:")
+                touchProps.take(5).forEach { EventLog.i("  $it") }
+            }
+
+            // Try to restart vendor init services
+            for (name in halNames) {
+                try {
+                    Runtime.getRuntime().exec(arrayOf("sh", "-c", "stop $name 2>/dev/null; start $name 2>/dev/null"))
+                    EventLog.i("[HAL-Restart] Versuch: $name")
+                } catch (_: Exception) {}
+            }
+
+            // Fallback: toggle input subsystem via settings
+            Settings.Secure.putInt(contentResolver, SENSITIVITY_SETTING, 1)
+            Thread.sleep(50)
+            Settings.Secure.putInt(contentResolver, SENSITIVITY_SETTING, 0)
+            Settings.System.putInt(contentResolver, POINTER_LOCATION_SETTING, 1)
+            Thread.sleep(50)
+            Settings.System.putInt(contentResolver, POINTER_LOCATION_SETTING, 0)
+
+            fixCount++
+            EventLog.ok("[HAL-Restart] Ausgeführt ✓ (Kick #$fixCount)")
+            updateNotification("HAL Kick #$fixCount")
+        } catch (e: Exception) {
+            EventLog.e("[HAL-Restart] Fehler: ${e.message}")
+        }
+    }
+
+    // ══════════════════════════════════════════════════════
+    //  FIX 3: Phantom Swipe Flood
+    // ══════════════════════════════════════════════════════
+
+    private fun executePhantomSwipes() {
+        try {
+            val dm = resources.displayMetrics
+            val w = dm.widthPixels
+            val h = dm.heightPixels
+
+            // Inject diverse swipe patterns to exercise the full touch pipeline
+            val swipes = listOf(
+                // Horizontal swipes across screen
+                "input swipe ${w/4} ${h/2} ${3*w/4} ${h/2} 30",
+                // Vertical swipe
+                "input swipe ${w/2} ${h/4} ${w/2} ${3*h/4} 30",
+                // Diagonal
+                "input swipe ${w/4} ${h/4} ${3*w/4} ${3*h/4} 30",
+                // Short taps at edges
+                "input tap 1 1",
+                "input tap ${w-1} ${h-1}",
+                "input tap ${w/2} 1",
+            )
+
+            var count = 0
+            for (swipe in swipes) {
+                Runtime.getRuntime().exec(swipe)
+                count++
+            }
+            EventLog.ok("[PhantomSwipe] $count Swipes/Taps injiziert ✓")
+        } catch (e: Exception) {
+            EventLog.e("[PhantomSwipe] Fehler: ${e.message}")
+        }
+    }
+
+    private fun injectSwipes(count: Int) {
+        try {
+            val dm = resources.displayMetrics
+            val w = dm.widthPixels
+            val h = dm.heightPixels
+            for (i in 0 until count) {
+                val y = h / 4 + (i * h / (2 * count))
+                Runtime.getRuntime().exec("input swipe ${w/4} $y ${3*w/4} $y 20")
+            }
+            EventLog.i("  → $count Swipes injiziert")
+        } catch (e: Exception) {
+            EventLog.e("  → Swipe-Injection Fehler: ${e.message}")
+        }
+    }
+
+    // ══════════════════════════════════════════════════════
+    //  FIX 4: sysfs Touch Reset
+    // ══════════════════════════════════════════════════════
+
+    private fun executeSysfsReset() {
+        // Try common sysfs paths for touch controller reset on Pixel/Goodix devices
+        val resetPaths = listOf(
+            "/sys/class/input/input0/device/reset",
+            "/sys/class/input/input1/device/reset",
+            "/sys/class/input/input2/device/reset",
+            "/sys/devices/virtual/input/input0/device/reset",
+            "/proc/goodix_ts/reset",
+            "/proc/tp_reset",
+            "/sys/bus/i2c/devices/1-005d/reset",
+            "/sys/bus/i2c/devices/2-005d/reset",
+            "/sys/bus/spi/devices/spi0.0/reset",
+            "/sys/bus/spi/devices/spi1.0/reset",
+        )
+
+        var found = false
+        for (path in resetPaths) {
+            val file = File(path)
+            if (file.exists()) {
+                try {
+                    Runtime.getRuntime().exec(arrayOf("sh", "-c", "echo 1 > $path"))
+                    EventLog.ok("[SysFS] Reset via $path ✓")
+                    found = true
+                } catch (e: Exception) {
+                    EventLog.e("[SysFS] Schreiben auf $path fehlgeschlagen: ${e.message}")
+                }
+            }
+        }
+
+        // Also try to find touch devices dynamically
+        try {
+            val proc = Runtime.getRuntime().exec(arrayOf("sh", "-c", "find /sys/class/input -name 'name' -exec grep -l -i touch {} \\; 2>/dev/null"))
+            val reader = BufferedReader(InputStreamReader(proc.inputStream))
+            var line: String?
+            while (reader.readLine().also { line = it } != null) {
+                val l = line ?: continue
+                val deviceDir = File(l).parentFile?.absolutePath ?: continue
+                EventLog.i("[SysFS] Touch-Device gefunden: $deviceDir")
+                // Try to reset via its parent
+                try {
+                    Runtime.getRuntime().exec(arrayOf("sh", "-c", "echo 1 > $deviceDir/device/reset 2>/dev/null"))
+                    EventLog.i("[SysFS] Reset-Versuch: $deviceDir/device/reset")
+                    found = true
+                } catch (_: Exception) {}
+            }
+            reader.close()
+        } catch (e: Exception) {
+            EventLog.e("[SysFS] Scan fehlgeschlagen: ${e.message}")
+        }
+
+        if (!found) {
+            EventLog.w("[SysFS] Keine beschreibbaren Reset-Pfade gefunden (root nötig)")
+            // Fallback: toggle settings
+            try {
+                Settings.Secure.putInt(contentResolver, SENSITIVITY_SETTING, 1)
+                handler.postDelayed({
+                    Settings.Secure.putInt(contentResolver, SENSITIVITY_SETTING, 0)
+                }, 40)
+                EventLog.i("[SysFS] Fallback: Sensitivity Toggle stattdessen")
+            } catch (e: Exception) {
+                EventLog.e("[SysFS] Auch Fallback fehlgeschlagen: ${e.message}")
+            }
+        }
+    }
+
+    // ══════════════════════════════════════════════════════
+    //  FIX 5: Escalating Auto-Fix
+    // ══════════════════════════════════════════════════════
+
+    private fun scheduleEscalation(delayMs: Long) {
+        handler.postDelayed({
+            if (touchDetectedSinceScreenOn) {
+                EventLog.ok("[AutoFix] Touch erkannt – Eskalation gestoppt ✓")
+                return@postDelayed
+            }
+
+            escalationLevel++
+            EventLog.w("[AutoFix] ═══ Eskalation Stufe $escalationLevel ═══")
+
+            when (escalationLevel) {
+                1 -> {
+                    EventLog.i("[AutoFix] Stufe 1: Settings-Toggle (sanft)")
+                    try {
+                        Settings.Secure.putInt(contentResolver, SENSITIVITY_SETTING, 1)
+                        handler.postDelayed({
+                            Settings.Secure.putInt(contentResolver, SENSITIVITY_SETTING, 0)
+                        }, 40)
+                        Settings.System.putInt(contentResolver, POINTER_LOCATION_SETTING, 1)
+                        handler.postDelayed({
+                            Settings.System.putInt(contentResolver, POINTER_LOCATION_SETTING, 0)
+                        }, 80)
+                    } catch (e: Exception) {
+                        EventLog.e("[AutoFix] Stufe 1 Fehler: ${e.message}")
+                    }
+                    fixCount++
+                    scheduleEscalation(2000)
+                }
+
+                2 -> {
+                    EventLog.i("[AutoFix] Stufe 2: Swipe-Flood (mittel)")
+                    executePhantomSwipes()
+                    injectSwipes(5)
+                    fixCount++
+                    scheduleEscalation(2000)
+                }
+
+                3 -> {
+                    EventLog.i("[AutoFix] Stufe 3: HAL-Poke (aggressiv)")
+                    executeTouchHalRestart()
+                    scheduleEscalation(3000)
+                }
+
+                4 -> {
+                    EventLog.i("[AutoFix] Stufe 4: sysfs Reset (maximal)")
+                    executeSysfsReset()
+                    scheduleEscalation(3000)
+                }
+
+                else -> {
+                    EventLog.e("[AutoFix] ═══ ALLE STUFEN GESCHEITERT ═══")
+                    EventLog.e("[AutoFix] Display-Cycle als letzter Versuch...")
+                    failCount++
+                    triggerScreenCycle()
+                    updateNotification("FAIL #$failCount")
+                    showBugNotification()
+                }
+            }
+        }, "ESCALATE", delayMs)
+    }
+
+    // ──────────────────── Screen Cycle (last resort) ────────────────────
+
+    private fun triggerScreenCycle() {
+        try {
+            val km = getSystemService(Context.KEYGUARD_SERVICE) as android.app.KeyguardManager
+            if (km.isKeyguardLocked) {
+                EventLog.e("[ScreenCycle] Abgebrochen (Keyguard aktiv)")
+                return
+            }
+            EventLog.w("[ScreenCycle] Display wird aus-/eingeschaltet...")
+            Runtime.getRuntime().exec("input keyevent 26") // Power off
+            handler.postDelayed({
+                Runtime.getRuntime().exec("input keyevent 26") // Power on
+                EventLog.i("[ScreenCycle] Display wieder an")
+            }, 500)
+        } catch (e: Exception) {
+            EventLog.e("[ScreenCycle] Fehler: ${e.message}")
+        }
+    }
+
+    // ──────────────────── Helpers ────────────────────
+
+    private fun acquireWakeLock(timeoutMs: Long) {
+        try {
+            val pm = getSystemService(Context.POWER_SERVICE) as PowerManager
+            wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TouchFix:Fix")
+            wakeLock?.acquire(timeoutMs)
+        } catch (_: Exception) {}
+    }
+
+    private fun releaseWakeLock() {
+        try {
+            wakeLock?.let { if (it.isHeld) it.release() }
+        } catch (_: Exception) {}
+        wakeLock = null
+    }
+
+    private fun createNotificationChannel() {
+        val channel = NotificationChannel(CHANNEL_ID, "TouchFix Status", NotificationManager.IMPORTANCE_LOW)
+        getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
+    }
+
+    private fun updateNotification(status: String) {
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(android.R.drawable.ic_menu_manage)
+            .setContentTitle("TouchFix v13")
+            .setContentText(status)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setOngoing(true)
+            .build()
+        getSystemService(NotificationManager::class.java).notify(NOTIFICATION_ID, notification)
     }
 
     private fun showBugNotification() {
-        failCount++
-        Log.e(TAG, "BUG NOT FIXED! Fail: $failCount")
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_dialog_alert)
             .setContentTitle("TouchFix Fehler!")
@@ -236,151 +569,5 @@ class TouchFixService : AccessibilityService() {
             .setAutoCancel(true)
             .build()
         getSystemService(NotificationManager::class.java).notify(NOTIFICATION_ID + 1, notification)
-        updateStatus("Fail #$failCount")
-    }
-
-    private fun startUltraReset() {
-        val now = System.currentTimeMillis()
-        if (now - lastFixTime < 200) return
-        lastFixTime = now
-        fixCount++
-
-        val baseDelay = 30L
-
-        // Stage 1: Haptic
-        handler.postAtTime({
-            try {
-                val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as android.os.Vibrator
-                vibrator.vibrate(android.os.VibrationEffect.createOneShot(50, 100))
-            } catch (e: Exception) {
-                Log.e(TAG, "Haptic failed", e)
-            }
-        }, "INPUT_KICK", System.currentTimeMillis() + baseDelay)
-
-        // Stage 2: Sensitivity
-        handler.postAtTime({
-            toggleSetting(Settings.Secure.getUriFor(SENSITIVITY_SETTING), 1, 0)
-        }, "INPUT_KICK", System.currentTimeMillis() + baseDelay + 60)
-
-        // Stage 3: Resolution
-        handler.postAtTime({
-            val dm = resources.displayMetrics
-            Settings.Global.putString(contentResolver, SIZE_SETTING, "${dm.widthPixels}x${dm.heightPixels + 1}")
-            handler.postDelayed({
-                Settings.Global.putString(contentResolver, SIZE_SETTING, null)
-            }, 40)
-        }, "INPUT_KICK", System.currentTimeMillis() + baseDelay + 120)
-
-        // Stage 4: Density
-        handler.postAtTime({
-            Settings.Secure.putString(contentResolver, DENSITY_SETTING, (originalDensity + 1).toString())
-            handler.postDelayed({
-                resetDensity()
-            }, 40)
-        }, "INPUT_KICK", System.currentTimeMillis() + baseDelay + 200)
-
-        // Stage 5: Touch Stats
-        handler.postAtTime({
-            try {
-                Settings.System.putInt(contentResolver, TOUCH_STATS_SETTING, 1)
-                handler.postDelayed({
-                    Settings.System.putInt(contentResolver, TOUCH_STATS_SETTING, 0)
-                }, 40)
-            } catch (e: Exception) {
-                Log.e(TAG, "Step 5 failed", e)
-            }
-        }, "INPUT_KICK", System.currentTimeMillis() + baseDelay + 280)
-
-        // Stage 6: Stylus Setting
-        handler.postAtTime({
-            try {
-                Settings.Secure.putInt(contentResolver, STYLUS_FINGER_SETTING, 1)
-                handler.postDelayed({
-                    Settings.Secure.putInt(contentResolver, STYLUS_FINGER_SETTING, 0)
-                }, 40)
-            } catch (e: Exception) {
-                Log.e(TAG, "Step 6 failed", e)
-            }
-        }, "INPUT_KICK", System.currentTimeMillis() + baseDelay + 360)
-
-        // Stage 7: Pointer Location
-        handler.postAtTime({
-            try {
-                Settings.System.putInt(contentResolver, POINTER_LOCATION_SETTING, 1)
-                handler.postDelayed({
-                    Settings.System.putInt(contentResolver, POINTER_LOCATION_SETTING, 0)
-                    updateStatus("Kick #$fixCount OK")
-                }, 40)
-            } catch (e: Exception) {
-                Log.e(TAG, "Step 7 failed", e)
-            }
-        }, "INPUT_KICK", System.currentTimeMillis() + baseDelay + 440)
-    }
-
-    private fun toggleSetting(uri: android.net.Uri, onValue: Int, offValue: Int) {
-        try {
-            Settings.Secure.putInt(contentResolver, uri.pathSegments.last(), onValue)
-            handler.postDelayed({
-                Settings.Secure.putInt(contentResolver, uri.pathSegments.last(), offValue)
-            }, 50)
-        } catch (e: Exception) {
-            Log.e(TAG, "Toggle failed", e)
-        }
-    }
-
-    private fun cleanupAllFlips() {
-        try {
-            Settings.Secure.putInt(contentResolver, SENSITIVITY_SETTING, 0)
-            Settings.Global.putString(contentResolver, SIZE_SETTING, null)
-            Settings.System.putInt(contentResolver, POINTER_LOCATION_SETTING, 0)
-            Settings.System.putInt(contentResolver, TOUCH_STATS_SETTING, 0)
-            resetDensity()
-        } catch (_: Exception) {
-        }
-    }
-
-    private fun resetDensity() {
-        try {
-            Settings.Secure.putString(contentResolver, DENSITY_SETTING, null)
-        } catch (_: Exception) {
-        }
-    }
-
-    private fun ensureDeepPressDisabled() {
-        try {
-            Settings.Secure.putInt(contentResolver, DEEP_PRESS_SETTING, 0)
-        } catch (_: Exception) {
-        }
-    }
-
-    private fun createNotificationChannel() {
-        val channel = NotificationChannel(CHANNEL_ID, "TouchFix Status", NotificationManager.IMPORTANCE_LOW)
-        getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
-    }
-
-    private fun updateMainNotification() {
-        val sb = StringBuilder()
-        sb.append("v11 - ")
-        if (settings.ultraKickEnabled) sb.append("Kick ")
-        if (settings.proactivePingEnabled) sb.append("Ping ")
-        if (settings.wakeLockEnabled) sb.append("WakeLock ")
-        if (settings.screenToggleEnabled) sb.append("Toggle")
-        showNotification("TouchFix", sb.toString())
-    }
-
-    private fun showNotification(title: String, text: String) {
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(android.R.drawable.ic_menu_manage)
-            .setContentTitle(title)
-            .setContentText(text)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
-            .setOngoing(true)
-            .build()
-        getSystemService(NotificationManager::class.java).notify(NOTIFICATION_ID, notification)
-    }
-
-    private fun updateStatus(status: String) {
-        val extras = if (pingCount > 0) " | Pings: $pingCount" else ""
-        showNotification("TouchFix", "$status$extras")
     }
 }
