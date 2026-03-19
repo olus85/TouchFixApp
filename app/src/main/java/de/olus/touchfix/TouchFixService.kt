@@ -51,14 +51,14 @@ class TouchFixService : AccessibilityService() {
         settings = TouchFixSettings.getInstance(this)
 
         EventLog.i("════════════════════════════════")
-        EventLog.ok("TouchFixService v13 gestartet")
-        EventLog.i("Gerät: ${android.os.Build.MODEL} / API ${android.os.Build.VERSION.SDK_INT}")
+        EventLog.ok(getString(R.string.log_service_started))
+        EventLog.i(getString(R.string.log_device_info, android.os.Build.MODEL, android.os.Build.VERSION.SDK_INT))
         logActiveSettings()
 
         createNotificationChannel()
-        updateNotification("Bereit")
+        updateNotification(getString(R.string.label_checking))
         registerScreenReceiver()
-        EventLog.ok("Service bereit – warte auf Screen-Events")
+        EventLog.ok(getString(R.string.log_service_ready))
     }
 
     private fun logActiveSettings() {
@@ -79,14 +79,14 @@ class TouchFixService : AccessibilityService() {
                 if (!touchDetectedSinceScreenOn) {
                     touchDetectedSinceScreenOn = true
                     val delay = System.currentTimeMillis() - screenOnTimestamp
-                    EventLog.ok("✓ Touch erkannt! (${delay}ms nach Screen-On)")
+                    EventLog.ok(getString(R.string.log_touch_detected_screen_on, delay))
                     handler.removeCallbacksAndMessages("ESCALATE")
                     handler.removeCallbacksAndMessages("WATCHDOG")
                 }
                 if (!touchDetectedSinceUnlock && unlockTimestamp > 0) {
                     touchDetectedSinceUnlock = true
                     val delay = System.currentTimeMillis() - unlockTimestamp
-                    EventLog.ok("✓ Touch nach Unlock! (${delay}ms nach Unlock)")
+                    EventLog.ok(getString(R.string.log_touch_detected_unlock, delay))
                     handler.removeCallbacksAndMessages("POST_FP")
                 }
             }
@@ -125,7 +125,7 @@ class TouchFixService : AccessibilityService() {
             addAction(Intent.ACTION_USER_PRESENT)
         }
         registerReceiver(screenReceiver, filter)
-        EventLog.i("Screen-Receiver registriert")
+        EventLog.i("Receiver active")
     }
 
     // ──────────────────── Screen ON ────────────────────
@@ -178,11 +178,11 @@ class TouchFixService : AccessibilityService() {
         unlockTimestamp = System.currentTimeMillis()
         touchDetectedSinceUnlock = false
         val timeSinceScreenOn = unlockTimestamp - screenOnTimestamp
-        EventLog.i("━━━ UNLOCK (${timeSinceScreenOn}ms nach Screen-On) ━━━")
+        EventLog.i(getString(R.string.log_unlock_detected, timeSinceScreenOn))
 
         // Post-Fingerprint Reset: the main targeted fix
         if (settings.postFingerprintResetEnabled) {
-            EventLog.i("[PostFP] Fingerprint-Unlock erkannt → Starte gezielte Resets...")
+            EventLog.i(getString(R.string.log_post_fp_start))
 
             // Stage 1: Immediate (50ms) – fast sensitivity toggle
             handler.postDelayed({
@@ -552,7 +552,7 @@ class TouchFixService : AccessibilityService() {
     private fun updateNotification(status: String) {
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_menu_manage)
-            .setContentTitle("TouchFix v13")
+            .setContentTitle("TouchFix v14")
             .setContentText(status)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setOngoing(true)

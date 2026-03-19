@@ -4,22 +4,21 @@ A specialized Android accessibility service designed to resolve the intermittent
 
 ## The Problem
 
-On some Pixel 10 Pro devices, the touchscreen becomes unresponsive for ~15 seconds after waking from standby or unlocking. This is caused by a bug in Google's `twoshay` touch pipeline and the `deeptouch` ML classifier, which incorrectly flags initial touch events as "abnormal" or "deep press" states, effectively blocking input.
+On some Pixel 10 Pro devices, the touchscreen becomes unresponsive after waking from standby or unlocking (especially via Fingerprint). This is caused by a bug in Google's `twoshay` touch pipeline and the `deeptouch` ML classifier.
 
-## Feature Suite (v11)
+## Feature Suite (v14)
 
-To combat the persistent `twoshay` freeze on the Pixel 10 Pro, this app offers multiple defensive layers:
+### 1. Targeted Fingerprint Fixes
+- **Post-Fingerprint Reset**: A multi-stage reset sequence specifically timed for the moments after a fingerprint unlock (50ms, 300ms, 600ms, 1000ms).
+- **Touch HAL Restart**: Attempts to restart the `vendor.google.touch_offload` services.
+- **Phantom Swipe Flood**: Injects high-speed swipe gestures to exercise the full input pipeline.
+- **sysfs Touch Reset**: Direct hardware-level reset via kernel nodes.
 
-### 1. The "Ultra Kick" (Defensive Reset)
-When the screen wakes, a high-speed sequence of system triggers forces a reconfiguration of the input pipeline:
-- **Pointer Location Toggle**: Forces `InputDispatcher` to rebuild viewports.
-- **Sensitivity/Resolution/Density Pulse**: Resets kernel-level touch parameters.
-- **Haptic Feedback**: Confirms the kick has fired.
+### 2. Intelligent Watchdog
+- **Escalating Auto-Fix**: Automatically detects if touch remains dead after wake and escalates through 4 severity levels (Settings → Swipes → HAL → sysfs → Screen-Cycle).
 
-### 2. Proactive Defense
-- **Proactive Ping**: Automatically "taps" the screen every 5 seconds (invisible coordinates) to keep the touch driver and `deeptouch` classifier awake.
-- **Wake Lock**: Prevents the CPU from entering deep sleep, reducing the chance of a HAL deadlock during wake-up transitions.
-- **Watchdog & Auto-Toggle**: Automatically detects if touch remains dead after a wake event and re-triggers the reset or even toggles the screen as a last resort.
+### 3. Internationalization (New in v14)
+- Full support for **English** and **German**. The app automatically adapts to your system language.
 
 ## Installation & Setup
 
@@ -27,16 +26,12 @@ When the screen wakes, a high-speed sequence of system triggers forces a reconfi
 2.  **Enable Accessibility Service**: Go to `Settings > Accessibility > TouchFix` and turn it on.
 3.  **Grant Permissions via ADB**:
     ```bash
-    # For Resolution/Density/Sensitivity resets:
     adb shell pm grant de.olus.touchfix android.permission.WRITE_SECURE_SETTINGS
-    
-    # For Pointer Location toggle (Ultra Kick):
-    adb shell appops set de.olus.touchfix WRITE_SETTINGS allow
     ```
 
 ## How to Use
 
-Open the app to toggle the new proactive features. The **Ultra Kick** is recommended for all users. Use **Wake Lock** and **Proactive Ping** if you still experience freezes after standard resets.
+Open the app to toggle the fix options. **Post-Fingerprint Reset** and **Escalating Auto-Fix** are recommended for most users. The in-app console provides real-time feedback on every action taken by the service.
 
 ## License
 

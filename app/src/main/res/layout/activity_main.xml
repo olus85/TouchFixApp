@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="v13 · Pixel 10 Pro · Fingerprint-Fix Edition"
+            android:text="v14 · Pixel 10 Pro · International Edition"
             android:textSize="14sp"
             android:textColor="#99E6E1E5"
             android:layout_marginTop="8dp"
@@ -43,7 +43,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SERVICE STATUS"
+                android:text="@string/label_service_status"
                 android:textSize="12sp"
                 android:textColor="#99E6E1E5"
                 android:letterSpacing="0.1"
@@ -53,7 +53,7 @@
                 android:id="@+id/status_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Prüfe…"
+                android:text="@string/label_checking"
                 android:textSize="16sp"
                 android:textColor="#FFE6E1E5" />
         </LinearLayout>
@@ -70,7 +70,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BERECHTIGUNG"
+                android:text="@string/label_permission"
                 android:textSize="12sp"
                 android:textColor="#99E6E1E5"
                 android:letterSpacing="0.1"
@@ -80,7 +80,7 @@
                 android:id="@+id/status_permission"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Prüfe…"
+                android:text="@string/label_checking"
                 android:textSize="14sp"
                 android:textColor="#FFE6E1E5"
                 android:fontFamily="monospace" />
@@ -98,7 +98,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🎯 FIX-OPTIONEN"
+                android:text="@string/label_fix_options"
                 android:textSize="12sp"
                 android:textColor="#FF80CBC4"
                 android:letterSpacing="0.1"
@@ -115,7 +115,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="🔐 Post-Fingerprint Reset"
+                    android:text="@string/title_post_fingerprint"
                     android:textSize="14sp"
                     android:textColor="#FFFFAB40" />
                 <Switch
@@ -126,7 +126,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gezielter 4-Stufen-Reset nach Fingerprint-Unlock (50/300/600/1000ms). Erkennt ob Touch nach dem Entsperren funktioniert und reagiert."
+                android:text="@string/desc_post_fingerprint"
                 android:textSize="11sp"
                 android:textColor="#99FFAB40"
                 android:layout_marginBottom="16dp" />
@@ -142,7 +142,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="⚙️ Touch HAL Restart"
+                    android:text="@string/title_hal_restart"
                     android:textSize="14sp"
                     android:textColor="#FFE6E1E5" />
                 <Switch
@@ -153,7 +153,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Versucht den Touch-HAL-Service (Vendor-Treiber) neu zu starten. Aggressivster Ansatz."
+                android:text="@string/desc_hal_restart"
                 android:textSize="11sp"
                 android:textColor="#66E6E1E5"
                 android:layout_marginBottom="16dp" />
@@ -169,7 +169,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="👻 Phantom Swipe Flood"
+                    android:text="@string/title_phantom_swipe"
                     android:textSize="14sp"
                     android:textColor="#FFE6E1E5" />
                 <Switch
@@ -180,7 +180,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Injiziert bei Screen-On sofort 6 Swipes/Taps statt punktueller Events. Durchläuft die gesamte Touch-Pipeline."
+                android:text="@string/desc_phantom_swipe"
                 android:textSize="11sp"
                 android:textColor="#66E6E1E5"
                 android:layout_marginBottom="16dp" />
@@ -196,7 +196,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="🔩 sysfs Touch Reset"
+                    android:text="@string/title_sysfs_reset"
                     android:textSize="14sp"
                     android:textColor="#FFE6E1E5" />
                 <Switch
@@ -207,7 +207,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Schreibt direkt auf Hardware-Reset-Nodes des Touch-Controllers (Goodix/Pixel). Braucht ggf. Root."
+                android:text="@string/desc_sysfs_reset"
                 android:textSize="11sp"
                 android:textColor="#66E6E1E5"
                 android:layout_marginBottom="16dp" />
@@ -223,7 +223,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="📈 Escalating Auto-Fix"
+                    android:text="@string/title_escalating"
                     android:textSize="14sp"
                     android:textColor="#FFFFAB40" />
                 <Switch
@@ -234,7 +234,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Intelligenter Watchdog: Wenn Touch nach Screen-On nicht reagiert, eskaliert automatisch durch 4 Stufen (Settings → Swipes → HAL → sysfs → Screen-Cycle)."
+                android:text="@string/desc_escalating"
                 android:textSize="11sp"
                 android:textColor="#99FFAB40" />
         </LinearLayout>
@@ -259,7 +259,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="📟 KONSOLE"
+                    android:text="@string/label_console"
                     android:textSize="12sp"
                     android:textColor="#FF80CBC4"
                     android:letterSpacing="0.1" />
@@ -268,7 +268,7 @@
                     android:id="@+id/btn_clear_log"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    android:text="Löschen"
+                    android:text="@string/btn_clear"
                     android:textSize="11sp"
                     android:backgroundTint="#33E6E1E5"
                     android:textColor="#99E6E1E5"
@@ -288,7 +288,7 @@
                     android:id="@+id/console_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Warte auf Events…"
+                    android:text="@string/label_waiting_events"
                     android:textSize="11sp"
                     android:textColor="#CCCCCCCC"
                     android:fontFamily="monospace"
@@ -308,7 +308,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="STATISTIKEN"
+                android:text="@string/label_stats"
                 android:textSize="12sp"
                 android:textColor="#99E6E1E5"
                 android:letterSpacing="0.1"
@@ -329,7 +329,7 @@
             android:id="@+id/btn_enable_service"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Service aktivieren"
+            android:text="@string/btn_activate"
             android:textSize="16sp"
             android:layout_marginTop="8dp"
             android:backgroundTint="#FF6750A4" />
@@ -338,7 +338,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="v13 fokussiert auf das Fingerprint-Unlock-Problem. Post-Fingerprint Reset erkennt den genauen Zeitpunkt des Entsperrens und reagiert gezielt."
+            android:text="@string/info_text"
             android:textSize="12sp"
             android:textColor="#66E6E1E5"
             android:layout_marginTop="24dp"

@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
         btnClearLog.setOnClickListener {
             EventLog.clear()
-            EventLog.i("Konsole gelöscht")
+            EventLog.i(getString(R.string.btn_clear))
         }
 
         // Switch listeners
@@ -126,13 +126,13 @@ class MainActivity : AppCompatActivity() {
 
         // Service status
         if (TouchFixService.isRunning) {
-            statusService.text = "✅ TouchFix v13 ACTIVE"
+            statusService.text = getString(R.string.status_service_active)
             statusService.setTextColor(0xFF4CAF50.toInt())
-            btnEnable.text = "Service-Einstellungen öffnen"
+            btnEnable.text = getString(R.string.btn_service_settings)
         } else {
-            statusService.text = "❌ TouchFix Service NICHT aktiv"
+            statusService.text = getString(R.string.status_service_inactive)
             statusService.setTextColor(0xFFF44336.toInt())
-            btnEnable.text = "Service jetzt aktivieren"
+            btnEnable.text = getString(R.string.btn_service_enable_now)
         }
 
         // Permission status
@@ -144,10 +144,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (hasPermission) {
-            statusPermission.text = "✅ WRITE_SECURE_SETTINGS gewährt"
+            statusPermission.text = getString(R.string.status_permission_granted)
             statusPermission.setTextColor(0xFF4CAF50.toInt())
         } else {
-            statusPermission.text = "❌ WRITE_SECURE_SETTINGS fehlt\n\nVia ADB:\nadb shell pm grant de.olus.touchfix android.permission.WRITE_SECURE_SETTINGS"
+            statusPermission.text = getString(R.string.status_permission_missing)
             statusPermission.setTextColor(0xFFF44336.toInt())
         }
 
@@ -164,16 +164,16 @@ class MainActivity : AppCompatActivity() {
                 settings.sysfsResetEnabled,
                 settings.escalatingAutofixEnabled,
             ).count { it }
-            statusLog.text = "Kicks: ${TouchFixService.fixCount} | Fails: ${TouchFixService.failCount} | Aktiv: $active/5"
+            statusLog.text = "Kicks: ${TouchFixService.fixCount} | Fails: ${TouchFixService.failCount} | Active: $active/5"
         } else {
-            statusLog.text = "Service nicht aktiv"
+            statusLog.text = getString(R.string.status_service_inactive)
         }
     }
 
     private fun refreshConsole() {
         val entries = EventLog.getSnapshot()
         if (entries.isEmpty()) {
-            consoleText.text = "Warte auf Events…"
+            consoleText.text = getString(R.string.label_waiting_events)
             return
         }
         consoleText.text = entries.joinToString("\n") { it.formatted }

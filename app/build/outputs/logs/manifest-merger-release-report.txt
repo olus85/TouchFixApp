@@ -1,0 +1,348 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:2:1-60:12
+INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:2:1-60:12
+INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:2:1-60:12
+INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:2:1-60:12
+MERGED from [com.google.android.material:material:1.11.0] /home/olus/.gradle/caches/8.9/transforms/13cebed3824d4ac78b348155c68e2f66/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/olus/.gradle/caches/8.9/transforms/cbe688238218a7a7e39af2ba2f3e37ae/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/olus/.gradle/caches/8.9/transforms/68af49633d0db1d1a7827523559227ef/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/olus/.gradle/caches/8.9/transforms/5d9c7f794560be29322b733eeb6430cb/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /home/olus/.gradle/caches/8.9/transforms/bdc949db6a7d8b8e8c7d2ceefc353532/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/olus/.gradle/caches/8.9/transforms/ea70d051a1995876e52730268b77fafe/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.6] /home/olus/.gradle/caches/8.9/transforms/ccccceb197e09d3acf90409caa3ac879/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.8.0] /home/olus/.gradle/caches/8.9/transforms/e23c2f83a2b42a0d405767bd47d0db31/transformed/activity-1.8.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/olus/.gradle/caches/8.9/transforms/897c1b38fbbc1901fca9e98ffb3f98c0/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/olus/.gradle/caches/8.9/transforms/825d749d83f4015d7a78f7a68f4df954/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/olus/.gradle/caches/8.9/transforms/7b34ff5686aa662df48697370f490454/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /home/olus/.gradle/caches/8.9/transforms/e6995f012a7f912e88b4680d9053cc41/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/olus/.gradle/caches/8.9/transforms/6920d1562798fb801c93134add6fe0a3/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/olus/.gradle/caches/8.9/transforms/131b853ef2f11828b2eca3af06083864/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/olus/.gradle/caches/8.9/transforms/985ba8829cab0742eaa4c763af3e6f8c/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/olus/.gradle/caches/8.9/transforms/2e8cbd75f693f7f0d6410e3ecfc604bf/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/olus/.gradle/caches/8.9/transforms/d2fd6a4c8d9b67c060ff8f4ed8fd625e/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/olus/.gradle/caches/8.9/transforms/1de51f5b5d1c97f1633febc494566bd1/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] /home/olus/.gradle/caches/8.9/transforms/688570d2ec47370e9f5385a5474fba7f/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/olus/.gradle/caches/8.9/transforms/f4aa752920c5de9045a5493f7a5cf0f2/transformed/savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] /home/olus/.gradle/caches/8.9/transforms/884353770c76e95ddc02dd7cb8710faf/transformed/lifecycle-livedata-core-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] /home/olus/.gradle/caches/8.9/transforms/3081f0b8ec14e73cfb9fe17eb156a0cd/transformed/lifecycle-livedata-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] /home/olus/.gradle/caches/8.9/transforms/f1911fa80db5189d75f57130b18e2aa3/transformed/lifecycle-viewmodel-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] /home/olus/.gradle/caches/8.9/transforms/4e10c64ed6762b0284c5372dd35ddb93/transformed/lifecycle-runtime-2.6.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] /home/olus/.gradle/caches/8.9/transforms/b61b00d862151dde68c988297daa7a97/transformed/lifecycle-viewmodel-savedstate-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.12.0] /home/olus/.gradle/caches/8.9/transforms/f10951169082e00a84300488c822a4b7/transformed/core-ktx-1.12.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/olus/.gradle/caches/8.9/transforms/281077c04d5f2d72db31a5c0d6df1bd8/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/olus/.gradle/caches/8.9/transforms/5d737ed52595c4e2a258d406370ce820/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/olus/.gradle/caches/8.9/transforms/3a56611f9e959a72fa9ebf3ec1722463/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/olus/.gradle/caches/8.9/transforms/ca134094d7bb558e8de425d5246a138a/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/olus/.gradle/caches/8.9/transforms/5000466a1edae0e0694b2f087e270160/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/olus/.gradle/caches/8.9/transforms/db341563d3d2f4e07f409b31ca245c1c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /home/olus/.gradle/caches/8.9/transforms/7545908075cea99a4bf08775ad7cb134/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/olus/.gradle/caches/8.9/transforms/c08c804c5ed3d62843a8572c63bd3203/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/olus/.gradle/caches/8.9/transforms/b28488680c4ab09922b1bbe6c39598e4/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/olus/.gradle/caches/8.9/transforms/80a1f6f582950f70191e83d9b6025d41/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/olus/.gradle/caches/8.9/transforms/a58b3614d7280d4797f2bd9670434511/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+	package
+		INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.WRITE_SECURE_SETTINGS
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:7:5-8:47
+	tools:ignore
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:8:9-44
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:7:22-77
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:11:5-81
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:11:22-78
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:14:5-68
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:14:22-65
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:17:5-77
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:17:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE_SPECIAL_USE
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:18:5-89
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:18:22-86
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:19:5-77
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:19:22-74
+application
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:21:5-59:19
+INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:21:5-59:19
+MERGED from [com.google.android.material:material:1.11.0] /home/olus/.gradle/caches/8.9/transforms/13cebed3824d4ac78b348155c68e2f66/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.11.0] /home/olus/.gradle/caches/8.9/transforms/13cebed3824d4ac78b348155c68e2f66/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/olus/.gradle/caches/8.9/transforms/68af49633d0db1d1a7827523559227ef/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/olus/.gradle/caches/8.9/transforms/68af49633d0db1d1a7827523559227ef/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/olus/.gradle/caches/8.9/transforms/5000466a1edae0e0694b2f087e270160/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/olus/.gradle/caches/8.9/transforms/5000466a1edae0e0694b2f087e270160/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/olus/.gradle/caches/8.9/transforms/db341563d3d2f4e07f409b31ca245c1c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/olus/.gradle/caches/8.9/transforms/db341563d3d2f4e07f409b31ca245c1c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:26:9-35
+	android:label
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:24:9-41
+	android:roundIcon
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:25:9-54
+	android:icon
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:23:9-43
+	android:allowBackup
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:22:9-35
+	android:theme
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:27:9-46
+activity#de.olus.touchfix.MainActivity
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:29:9-37:20
+	android:exported
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:31:13-36
+	android:theme
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:32:13-50
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:30:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:33:13-36:29
+action#android.intent.action.MAIN
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:34:17-69
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:34:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:35:17-77
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:35:27-74
+service#de.olus.touchfix.TouchFixService
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:39:9-49:19
+	android:exported
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:41:13-37
+	android:permission
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:42:13-79
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:40:13-44
+intent-filter#action:name:android.accessibilityservice.AccessibilityService
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:43:13-45:29
+action#android.accessibilityservice.AccessibilityService
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:44:17-92
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:44:25-89
+meta-data#android.accessibilityservice
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:46:13-48:72
+	android:resource
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:48:17-69
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:47:17-60
+receiver#de.olus.touchfix.BootReceiver
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:51:9-57:20
+	android:exported
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:53:13-36
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:52:13-41
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:54:13-56:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:55:17-79
+	android:name
+		ADDED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml:55:25-76
+uses-sdk
+INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml
+INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.11.0] /home/olus/.gradle/caches/8.9/transforms/13cebed3824d4ac78b348155c68e2f66/transformed/material-1.11.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.11.0] /home/olus/.gradle/caches/8.9/transforms/13cebed3824d4ac78b348155c68e2f66/transformed/material-1.11.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/olus/.gradle/caches/8.9/transforms/cbe688238218a7a7e39af2ba2f3e37ae/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/olus/.gradle/caches/8.9/transforms/cbe688238218a7a7e39af2ba2f3e37ae/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/olus/.gradle/caches/8.9/transforms/68af49633d0db1d1a7827523559227ef/transformed/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/olus/.gradle/caches/8.9/transforms/68af49633d0db1d1a7827523559227ef/transformed/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/olus/.gradle/caches/8.9/transforms/5d9c7f794560be29322b733eeb6430cb/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/olus/.gradle/caches/8.9/transforms/5d9c7f794560be29322b733eeb6430cb/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /home/olus/.gradle/caches/8.9/transforms/bdc949db6a7d8b8e8c7d2ceefc353532/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /home/olus/.gradle/caches/8.9/transforms/bdc949db6a7d8b8e8c7d2ceefc353532/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/olus/.gradle/caches/8.9/transforms/ea70d051a1995876e52730268b77fafe/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/olus/.gradle/caches/8.9/transforms/ea70d051a1995876e52730268b77fafe/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /home/olus/.gradle/caches/8.9/transforms/ccccceb197e09d3acf90409caa3ac879/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /home/olus/.gradle/caches/8.9/transforms/ccccceb197e09d3acf90409caa3ac879/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.8.0] /home/olus/.gradle/caches/8.9/transforms/e23c2f83a2b42a0d405767bd47d0db31/transformed/activity-1.8.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.0] /home/olus/.gradle/caches/8.9/transforms/e23c2f83a2b42a0d405767bd47d0db31/transformed/activity-1.8.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/olus/.gradle/caches/8.9/transforms/897c1b38fbbc1901fca9e98ffb3f98c0/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/olus/.gradle/caches/8.9/transforms/897c1b38fbbc1901fca9e98ffb3f98c0/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/olus/.gradle/caches/8.9/transforms/825d749d83f4015d7a78f7a68f4df954/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/olus/.gradle/caches/8.9/transforms/825d749d83f4015d7a78f7a68f4df954/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/olus/.gradle/caches/8.9/transforms/7b34ff5686aa662df48697370f490454/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/olus/.gradle/caches/8.9/transforms/7b34ff5686aa662df48697370f490454/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /home/olus/.gradle/caches/8.9/transforms/e6995f012a7f912e88b4680d9053cc41/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /home/olus/.gradle/caches/8.9/transforms/e6995f012a7f912e88b4680d9053cc41/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/olus/.gradle/caches/8.9/transforms/6920d1562798fb801c93134add6fe0a3/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/olus/.gradle/caches/8.9/transforms/6920d1562798fb801c93134add6fe0a3/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/olus/.gradle/caches/8.9/transforms/131b853ef2f11828b2eca3af06083864/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/olus/.gradle/caches/8.9/transforms/131b853ef2f11828b2eca3af06083864/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/olus/.gradle/caches/8.9/transforms/985ba8829cab0742eaa4c763af3e6f8c/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/olus/.gradle/caches/8.9/transforms/985ba8829cab0742eaa4c763af3e6f8c/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/olus/.gradle/caches/8.9/transforms/2e8cbd75f693f7f0d6410e3ecfc604bf/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/olus/.gradle/caches/8.9/transforms/2e8cbd75f693f7f0d6410e3ecfc604bf/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/olus/.gradle/caches/8.9/transforms/d2fd6a4c8d9b67c060ff8f4ed8fd625e/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/olus/.gradle/caches/8.9/transforms/d2fd6a4c8d9b67c060ff8f4ed8fd625e/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/olus/.gradle/caches/8.9/transforms/1de51f5b5d1c97f1633febc494566bd1/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/olus/.gradle/caches/8.9/transforms/1de51f5b5d1c97f1633febc494566bd1/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /home/olus/.gradle/caches/8.9/transforms/688570d2ec47370e9f5385a5474fba7f/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /home/olus/.gradle/caches/8.9/transforms/688570d2ec47370e9f5385a5474fba7f/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/olus/.gradle/caches/8.9/transforms/f4aa752920c5de9045a5493f7a5cf0f2/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/olus/.gradle/caches/8.9/transforms/f4aa752920c5de9045a5493f7a5cf0f2/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] /home/olus/.gradle/caches/8.9/transforms/884353770c76e95ddc02dd7cb8710faf/transformed/lifecycle-livedata-core-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] /home/olus/.gradle/caches/8.9/transforms/884353770c76e95ddc02dd7cb8710faf/transformed/lifecycle-livedata-core-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] /home/olus/.gradle/caches/8.9/transforms/3081f0b8ec14e73cfb9fe17eb156a0cd/transformed/lifecycle-livedata-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] /home/olus/.gradle/caches/8.9/transforms/3081f0b8ec14e73cfb9fe17eb156a0cd/transformed/lifecycle-livedata-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] /home/olus/.gradle/caches/8.9/transforms/f1911fa80db5189d75f57130b18e2aa3/transformed/lifecycle-viewmodel-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] /home/olus/.gradle/caches/8.9/transforms/f1911fa80db5189d75f57130b18e2aa3/transformed/lifecycle-viewmodel-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] /home/olus/.gradle/caches/8.9/transforms/4e10c64ed6762b0284c5372dd35ddb93/transformed/lifecycle-runtime-2.6.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] /home/olus/.gradle/caches/8.9/transforms/4e10c64ed6762b0284c5372dd35ddb93/transformed/lifecycle-runtime-2.6.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] /home/olus/.gradle/caches/8.9/transforms/b61b00d862151dde68c988297daa7a97/transformed/lifecycle-viewmodel-savedstate-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] /home/olus/.gradle/caches/8.9/transforms/b61b00d862151dde68c988297daa7a97/transformed/lifecycle-viewmodel-savedstate-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.12.0] /home/olus/.gradle/caches/8.9/transforms/f10951169082e00a84300488c822a4b7/transformed/core-ktx-1.12.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.12.0] /home/olus/.gradle/caches/8.9/transforms/f10951169082e00a84300488c822a4b7/transformed/core-ktx-1.12.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/olus/.gradle/caches/8.9/transforms/281077c04d5f2d72db31a5c0d6df1bd8/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/olus/.gradle/caches/8.9/transforms/281077c04d5f2d72db31a5c0d6df1bd8/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/olus/.gradle/caches/8.9/transforms/5d737ed52595c4e2a258d406370ce820/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/olus/.gradle/caches/8.9/transforms/5d737ed52595c4e2a258d406370ce820/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/olus/.gradle/caches/8.9/transforms/3a56611f9e959a72fa9ebf3ec1722463/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/olus/.gradle/caches/8.9/transforms/3a56611f9e959a72fa9ebf3ec1722463/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/olus/.gradle/caches/8.9/transforms/ca134094d7bb558e8de425d5246a138a/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/olus/.gradle/caches/8.9/transforms/ca134094d7bb558e8de425d5246a138a/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/olus/.gradle/caches/8.9/transforms/5000466a1edae0e0694b2f087e270160/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/olus/.gradle/caches/8.9/transforms/5000466a1edae0e0694b2f087e270160/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/olus/.gradle/caches/8.9/transforms/db341563d3d2f4e07f409b31ca245c1c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/olus/.gradle/caches/8.9/transforms/db341563d3d2f4e07f409b31ca245c1c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/olus/.gradle/caches/8.9/transforms/7545908075cea99a4bf08775ad7cb134/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/olus/.gradle/caches/8.9/transforms/7545908075cea99a4bf08775ad7cb134/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/olus/.gradle/caches/8.9/transforms/c08c804c5ed3d62843a8572c63bd3203/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/olus/.gradle/caches/8.9/transforms/c08c804c5ed3d62843a8572c63bd3203/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/olus/.gradle/caches/8.9/transforms/b28488680c4ab09922b1bbe6c39598e4/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/olus/.gradle/caches/8.9/transforms/b28488680c4ab09922b1bbe6c39598e4/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/olus/.gradle/caches/8.9/transforms/80a1f6f582950f70191e83d9b6025d41/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/olus/.gradle/caches/8.9/transforms/80a1f6f582950f70191e83d9b6025d41/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/olus/.gradle/caches/8.9/transforms/a58b3614d7280d4797f2bd9670434511/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/olus/.gradle/caches/8.9/transforms/a58b3614d7280d4797f2bd9670434511/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+	android:targetSdkVersion
+		INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/olus/Dokumente/AndroidStudioProjects/TouchFixApp/app/src/main/AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/olus/.gradle/caches/8.9/transforms/db341563d3d2f4e07f409b31ca245c1c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/olus/.gradle/caches/8.9/transforms/db341563d3d2f4e07f409b31ca245c1c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/olus/.gradle/caches/8.9/transforms/b4385cc22e4c9012b28a5d3c51b5715d/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+permission#de.olus.touchfix.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+uses-permission#de.olus.touchfix.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.12.0] /home/olus/.gradle/caches/8.9/transforms/3bcb6b29c6728c1a5e3ca5989f51a975/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.1] /home/olus/.gradle/caches/8.9/transforms/9b1df0ff30569e0851fe2fa794d209e0/transformed/lifecycle-process-2.6.1/AndroidManifest.xml:30:17-78
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/olus/.gradle/caches/8.9/transforms/19a1d55e912c3d02466b2390fd45ed60/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF1C1B1F"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- App Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔧 TouchFix"
+            android:textSize="32sp"
+            android:textColor="#FFE6E1E5"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="v12 · Pixel 10 Pro Touch-Freeze Workaround"
+            android:textSize="14sp"
+            android:textColor="#99E6E1E5"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Service Status Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SERVICE STATUS"
+                android:textSize="12sp"
+                android:textColor="#99E6E1E5"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/status_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prüfe…"
+                android:textSize="16sp"
+                android:textColor="#FFE6E1E5" />
+        </LinearLayout>
+
+        <!-- Permission Status Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BERECHTIGUNG"
+                android:textSize="12sp"
+                android:textColor="#99E6E1E5"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/status_permission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prüfe…"
+                android:textSize="14sp"
+                android:textColor="#FFE6E1E5"
+                android:fontFamily="monospace" />
+        </LinearLayout>
+
+        <!-- Options Card: Original -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STANDARD-OPTIONEN"
+                android:textSize="12sp"
+                android:textColor="#99E6E1E5"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Ultra Kick -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ultra Kick"
+                    android:textSize="14sp"
+                    android:textColor="#FFE6E1E5" />
+                <Switch
+                    android:id="@+id/switch_ultra_kick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7-Stage Reset bei jedem Screen-On"
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Proactive Ping -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Proaktiver Ping (5s)"
+                    android:textSize="14sp"
+                    android:textColor="#FFE6E1E5" />
+                <Switch
+                    android:id="@+id/switch_proactive_ping"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Periodische unsichtbare Touch-Events"
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Wake Lock -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Wake Lock (⚠ Akku)"
+                    android:textSize="14sp"
+                    android:textColor="#FFE6E1E5" />
+                <Switch
+                    android:id="@+id/switch_wake_lock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CPU-WakeLock gegen Treiber-Deadlocks"
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Screen Toggle -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Screen Toggle (Notfall)"
+                    android:textSize="14sp"
+                    android:textColor="#FFE6E1E5" />
+                <Switch
+                    android:id="@+id/switch_screen_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Display aus/an wenn alle Kicks scheitern"
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5" />
+        </LinearLayout>
+
+        <!-- Options Card: NEW v12 Experimental -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🧪 EXPERIMENTELLE FIXES (v12)"
+                android:textSize="12sp"
+                android:textColor="#FFFFAB40"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Touch Alive Keep -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🔋 Touch Alive Keep"
+                    android:textSize="14sp"
+                    android:textColor="#FFFFAB40" />
+                <Switch
+                    android:id="@+id/switch_touch_alive_keep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Touch-Treiber bei Screen-Off NICHT deaktivieren. Hält den Treiber mit periodischen Events aktiv. Verbraucht Akku, sollte den Bug verhindern."
+                android:textSize="11sp"
+                android:textColor="#99FFAB40"
+                android:layout_marginBottom="14dp" />
+
+            <!-- Input Device Reset -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🔄 Input Device Reset"
+                    android:textSize="14sp"
+                    android:textColor="#FFE6E1E5" />
+                <Switch
+                    android:id="@+id/switch_input_device_reset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Input-Devices via dumpsys parsen und disable/re-enable. Setzt den gesamten Input-Stack zurück."
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5"
+                android:layout_marginBottom="14dp" />
+
+            <!-- Aggressive Pre-Wake -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="⚡ Aggressive Pre-Wake"
+                    android:textSize="14sp"
+                    android:textColor="#FFE6E1E5" />
+                <Switch
+                    android:id="@+id/switch_aggressive_pre_wake"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sofortiger Kick bei Screen-On (0ms Delay) mit Multi-Position Taps auf 7 Bildschirmpunkte."
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5"
+                android:layout_marginBottom="14dp" />
+
+            <!-- Double Unlock Kick -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🔐 Double-Unlock Kick"
+                    android:textSize="14sp"
+                    android:textColor="#FFE6E1E5" />
+                <Switch
+                    android:id="@+id/switch_double_unlock_kick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Zwei komplette Reset-Zyklen bei Unlock mit 200ms Pause. Für hartnäckige Fälle."
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5"
+                android:layout_marginBottom="14dp" />
+
+            <!-- Touch Input Inject -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="💉 Touch Input Inject"
+                    android:textSize="14sp"
+                    android:textColor="#FFE6E1E5" />
+                <Switch
+                    android:id="@+id/switch_touch_input_inject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="15 synthetische Taps auf verschiedene Positionen in 3 Sekunden nach Screen-On."
+                android:textSize="11sp"
+                android:textColor="#66E6E1E5" />
+        </LinearLayout>
+
+        <!-- CONSOLE Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="📟 KONSOLE"
+                    android:textSize="12sp"
+                    android:textColor="#FF80CBC4"
+                    android:letterSpacing="0.1" />
+
+                <Button
+                    android:id="@+id/btn_clear_log"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Löschen"
+                    android:textSize="11sp"
+                    android:backgroundTint="#33E6E1E5"
+                    android:textColor="#99E6E1E5"
+                    android:minWidth="0dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp" />
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/console_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="#FF121212"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/console_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Warte auf Events…"
+                    android:textSize="11sp"
+                    android:textColor="#CCCCCCCC"
+                    android:fontFamily="monospace"
+                    android:lineSpacingMultiplier="1.3" />
+            </ScrollView>
+        </LinearLayout>
+
+        <!-- Stats Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="20dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STATISTIKEN"
+                android:textSize="12sp"
+                android:textColor="#99E6E1E5"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/status_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="–"
+                android:textSize="14sp"
+                android:textColor="#FFE6E1E5"
+                android:fontFamily="monospace" />
+        </LinearLayout>
+
+        <!-- Enable Button -->
+        <Button
+            android:id="@+id/btn_enable_service"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Service aktivieren"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#FF6750A4" />
+
+        <!-- Info -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TouchFix v12 setzt nach jedem Aufwachen den Touch-Stack zurück. Die experimentellen Fixes können helfen, den Bug komplett zu verhindern."
+            android:textSize="12sp"
+            android:textColor="#66E6E1E5"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp"
+            android:lineSpacingMultiplier="1.4" />
+
+    </LinearLayout>
+</ScrollView>

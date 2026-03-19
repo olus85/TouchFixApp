@@ -2,6 +2,13 @@
 
 All notable changes to the TouchFix project.
 
+## [v14] - 2026-03-19 "International Edition"
+### Added
+- **Internationalisierung (i18n)**: Volle Unterstützung für Deutsch und Englisch.
+- UI und Log-Meldungen passen sich der Systemsprache an.
+- Alle Texte in String-Ressourcen extrahiert.
+
+
 ## [v13] - 2026-03-19 "Fingerprint-Fix Edition"
 ### Changed
 - **ALLE 10 alten Switches entfernt** – keiner hat den Bug zuverlässig behoben.

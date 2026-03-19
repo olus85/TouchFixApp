@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accessibility_service_description">TouchFix behebt automatisch das Touch-Freeze-Problem nach dem Aufwachen des Pixel 10 Pro. Der Service erkennt Screen-On-Events und setzt den Touch-Classifier zurück, wenn nötig.</string>
+    <string name="app_name">TouchFix</string>
+    <string name="btn_activate">Service aktivieren</string>
+    <string name="btn_clear">Löschen</string>
+    <string name="btn_service_enable_now">Service jetzt aktivieren</string>
+    <string name="btn_service_settings">Service-Einstellungen öffnen</string>
+    <string name="desc_escalating">Intelligenter Watchdog: Eskaliert durch 4 Stufen wenn Touch tot ist.</string>
+    <string name="desc_hal_restart">Versucht den Touch-HAL-Service (Vendor-Treiber) neu zu starten. Aggressivster Ansatz.</string>
+    <string name="desc_phantom_swipe">Injiziert bei Screen-On sofort 6 Swipes/Taps statt punktueller Events. Durchläuft die gesamte Touch-Pipeline.</string>
+    <string name="desc_post_fingerprint">Gezielter 4-Stufen-Reset nach Fingerprint-Unlock (50/300/600/1000ms). Erkennt ob Touch nach dem Entsperren funktioniert und reagiert.</string>
+    <string name="desc_sysfs_reset">Schreibt direkt auf Hardware-Reset-Nodes des Touch-Controllers (Goodix/Pixel). Braucht ggf. Root.</string>
+    <string name="info_text">v14 fokussiert auf das Fingerprint-Unlock-Problem. Post-Fingerprint Reset erkennt den genauen Zeitpunkt des Entsperrens und reagiert gezielt.</string>
+    <string name="label_checking">Prüfe...</string>
+    <string name="label_console">KONSOLE</string>
+    <string name="label_fix_options">FIX-OPTIONEN</string>
+    <string name="label_permission">BERECHTIGUNG</string>
+    <string name="label_service_status">SERVICE STATUS</string>
+    <string name="label_stats">STATISTIKEN</string>
+    <string name="label_waiting_events">Warte auf Events...</string>
+    <string name="log_device_info">Gerät: %1$s / API %2$d</string>
+    <string name="log_hal_restart_try">[HAL-Restart] Kein Touch nach Unlock -> HAL wird neu gestartet...</string>
+    <string name="log_phantom_swipe_start">[PhantomSwipe] Sofort-Swipes werden injiziert...</string>
+    <string name="log_post_fp_start">[PostFP] Fingerprint-Unlock erkannt -> Starte gezielte Resets...</string>
+    <string name="log_service_ready">Service bereit – warte auf Screen-Events</string>
+    <string name="log_service_started">TouchFixService v14 gestartet</string>
+    <string name="log_touch_detected_screen_on">[OK] Touch erkannt! (%1$dms nach Screen-On)</string>
+    <string name="log_touch_detected_unlock">[OK] Touch nach Unlock! (%1$dms nach Unlock)</string>
+    <string name="log_unlock_detected">━━━ UNLOCK (%1$dms nach Screen-On) ━━━</string>
+    <string name="notification_channel_name">TouchFix Status</string>
+    <string name="status_permission_granted">WRITE_SECURE_SETTINGS gewährt</string>
+    <string name="status_permission_missing">WRITE_SECURE_SETTINGS fehlt\n\nVia ADB:\nadb shell pm grant de.olus.touchfix android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="status_service_active">TouchFix v14 AKTIV</string>
+    <string name="status_service_inactive">TouchFix Service NICHT aktiv</string>
+    <string name="title_escalating">Escalating Auto-Fix</string>
+    <string name="title_hal_restart">Touch HAL Restart</string>
+    <string name="title_phantom_swipe">Phantom Swipe Flood</string>
+    <string name="title_post_fingerprint">Post-Fingerprint Reset</string>
+    <string name="title_sysfs_reset">sysfs Touch Reset</string>
+</resources>

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../../../adb debugging"
+		},
+		{
+			"path": "../../../../../../.."
+		}
+	],
+	"settings": {
+		"antigravityLink.autoStart": true
+	}
+}
