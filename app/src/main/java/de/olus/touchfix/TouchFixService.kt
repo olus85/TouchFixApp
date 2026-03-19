@@ -131,13 +131,15 @@ class TouchFixService : AccessibilityService() {
         pingRunnable?.let { handler.removeCallbacks(it) }
         try {
             wakeLock?.release()
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to release wakeLock", e)
         }
         cleanupAllFlips()
         screenReceiver?.let {
             try {
                 unregisterReceiver(it)
-            } catch (_: Exception) {
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to unregister screenReceiver", e)
             }
         }
         super.onDestroy()
@@ -335,21 +337,24 @@ class TouchFixService : AccessibilityService() {
             Settings.System.putInt(contentResolver, POINTER_LOCATION_SETTING, 0)
             Settings.System.putInt(contentResolver, TOUCH_STATS_SETTING, 0)
             resetDensity()
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to cleanup all flips", e)
         }
     }
 
     private fun resetDensity() {
         try {
             Settings.Secure.putString(contentResolver, DENSITY_SETTING, null)
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to reset density", e)
         }
     }
 
     private fun ensureDeepPressDisabled() {
         try {
             Settings.Secure.putInt(contentResolver, DEEP_PRESS_SETTING, 0)
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to ensure deep press disabled", e)
         }
     }
 
