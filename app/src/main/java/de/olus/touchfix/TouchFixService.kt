@@ -14,6 +14,8 @@ import android.provider.Settings
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import androidx.core.app.NotificationCompat
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class TouchFixService : AccessibilityService() {
 
@@ -43,6 +45,7 @@ class TouchFixService : AccessibilityService() {
 
     private lateinit var settings: TouchFixSettings
     private val handler = Handler(Looper.getMainLooper())
+    private val commandExecutor: ExecutorService = Executors.newSingleThreadExecutor()
     private var screenReceiver: BroadcastReceiver? = null
     private var originalDensity: Int = 0
     private var touchDetectedThisCycle = false
@@ -96,10 +99,12 @@ class TouchFixService : AccessibilityService() {
 
     private fun sendPing() {
         pingCount++
-        try {
-            Runtime.getRuntime().exec("input tap 1 1")
-        } catch (e: Exception) {
-            Log.e(TAG, "Ping failed", e)
+        commandExecutor.execute {
+            try {
+                Runtime.getRuntime().exec("input tap 1 1")
+            } catch (e: Exception) {
+                Log.e(TAG, "Ping failed", e)
+            }
         }
     }
 
@@ -127,6 +132,7 @@ class TouchFixService : AccessibilityService() {
 
     override fun onDestroy() {
         isRunning = false
+        commandExecutor.shutdown()
         handler.removeCallbacksAndMessages(null)
         pingRunnable?.let { handler.removeCallbacks(it) }
         try {
@@ -214,14 +220,17 @@ class TouchFixService : AccessibilityService() {
             showBugNotification()
             return
         }
-        try {
-            Runtime.getRuntime().exec("input keyevent 26")
-            handler.postDelayed({
+        commandExecutor.execute {
+            try {
                 Runtime.getRuntime().exec("input keyevent 26")
-            }, 400)
-        } catch (e: Exception) {
-            Log.e(TAG, "Toggle failed", e)
-            showBugNotification()
+                Thread.sleep(400)
+                Runtime.getRuntime().exec("input keyevent 26")
+            } catch (e: Exception) {
+                Log.e(TAG, "Toggle failed", e)
+                handler.post {
+                    showBugNotification()
+                }
+            }
         }
     }
 
